@@ -1,0 +1,17 @@
+# CMake
+build/
+**/build/
+compile_commands.json
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Qt Creator / Qt
+*.user
+*.user.*
+*.autosave
+.qtc_clangd/
+
+# clangd / IDE tooling (often symlinked into project root — keep local only)
+.cache/
