@@ -5,7 +5,6 @@
 #include "models/Recipe.h"
 
 class QResizeEvent;
-
 namespace Ui { class RecipeDetailsPage; }
 
 class RecipeDetailsPage : public QWidget
@@ -27,11 +26,11 @@ protected:
 
 private:
     void updateHeroImage();
-    void applyMetaHtml(const Recipe &recipe);
 
     Ui::RecipeDetailsPage *ui;
-    int m_recipeId = 0;
+    int     m_recipeId      = 0;
     QString m_heroImagePath;
+
     static constexpr int kHeroCornerRadius = 16;
 };
 

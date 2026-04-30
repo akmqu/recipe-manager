@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    showMaximized();
+    this->resize(1280, 720);
 
     if (!DatabaseManager::instance().connect()) {
         QMessageBox::critical(this, "Błąd bazy danych",

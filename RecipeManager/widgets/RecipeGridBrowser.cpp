@@ -124,8 +124,8 @@ int RecipeGridBrowser::calculateColumns() const
 {
     int width = ui->scrollArea->viewport()->width();
     if (width < 100)
-        width = 800;
-    return qMax(1, (width - 20) / (260 + 20));
+        width = 1000;
+    return qMax(1, (width - 20) / (300 + 20));
 }
 
 void RecipeGridBrowser::loadCards(const QList<Recipe> &recipes)
@@ -141,7 +141,7 @@ void RecipeGridBrowser::loadCards(const QList<Recipe> &recipes)
 
     for (const Recipe &r : recipes) {
         auto *card = new RecipeCard(r, ui->scrollAreaWidgetContents);
-        card->setFixedSize(260, 260);
+        card->setFixedSize(300, 300);
         m_gridLayout->addWidget(card, row, col);
 
         connect(card, &RecipeCard::cardClicked,

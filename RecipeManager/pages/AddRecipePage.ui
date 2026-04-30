@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
-    <height>700</height>
+    <width>1000</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="font">
@@ -18,7 +18,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_Main">
+  <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>0</number>
    </property>
@@ -108,6 +108,9 @@
    </item>
    <item>
     <widget class="QScrollArea" name="scrollArea_Form">
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
      </property>
@@ -119,8 +122,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>900</width>
-        <height>620</height>
+        <width>1000</width>
+        <height>640</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_Scroll">

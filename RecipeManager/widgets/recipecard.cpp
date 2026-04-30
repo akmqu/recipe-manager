@@ -39,7 +39,7 @@ RecipeCard::RecipeCard(const Recipe& recipe, QWidget *parent)
         if (!pm.isNull()) {
             QSize box = ui->label_image->size();
             if (box.width() < 20 || box.height() < 20)
-                box = QSize(260, 160);
+                box = QSize(300, 200);
             constexpr int kCardImageRadius = 13;
             ui->label_image->setPixmap(
                 RecipeImageStorage::coverTopRoundPixmap(pm, box, kCardImageRadius));

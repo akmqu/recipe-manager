@@ -8,27 +8,32 @@
 
 
 AddRecipePage {
-    background-color: #ffffff;
+    background-color: #f9f5f0;
 }
 
 #scrollContents {
-    background-color: #ffffff;
+    background-color: #f9f5f0;
 }
 
 QScrollArea#scrollArea_Form {
-    background-color: #ffffff;
+    background-color: #f9f5f0;
+    border: none;
+}
+
+QScrollArea#scrollAreaWidgetContents {
+    background-color: #f9f5f0;
     border: none;
 }
 
 
 QMainWindow,
 QWidget#centralwidget {
-    background-color: #ffffff; /* Теплий фон бокового меню */
+    background-color: #f9f5f0; 
 }
 
 
 QWidget {
-    color: #344F1F; /* Глибокий зелений для основного тексту */
+    color: #344F1F; 
     font-family: "Segoe UI", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
     font-size: 13px;
     selection-color: #FFFFFF;
@@ -36,21 +41,19 @@ QWidget {
 
 
 
-/* Контейнер сторінок перекриває фон світлим кольором і створює лінію-розділювач */
 QStackedWidget#stackedWidget {
-    background-color: #ffffff; /* Кремовий canvas */
+    background-color: #f9f5f0; 
 }
 
 
 
 
 /* ============================================================
-   2. SIDEBAR — Заборона розтягування
+   2. SIDEBAR 
    ============================================================ */
 
-/* Жорстко фіксуємо ширину меню, щоб воно не розтягувалось на пів екрана */
 QListWidget#listWidget {
-    background-color: #F9F5F0;
+    background-color: #f2ead3;
     border: none;
     padding: 10px 0px;
     font-size: 14px;
@@ -59,7 +62,7 @@ QListWidget#listWidget {
 }
 
 QListWidget::item {
-    color: #344F1F; /* Глибокий зелений */
+    color: #344F1F; 
     padding: 11px 14px;
     border: none;
     border-radius: 10px;
@@ -67,14 +70,14 @@ QListWidget::item {
 }
 
 QListWidget::item:hover:!selected {
-    background-color: #F2EAD3;
+    background-color: #e0cfb3;
     color: #344f1f;
 }
 
 QListWidget::item:selected {
-    background-color: #F2EAD3;
-    color: #f4991a; /* Оранжевий активний акцент */
-    border-left: 3px solid #F4991A;
+    background-color: #e0cfb3;
+    color: #344f1f; 
+    border-left: 3px solid #344f1f;
     font-weight: bold;
     padding-left: 11px;
     outline: none;
@@ -84,11 +87,10 @@ QListWidget:focus {
     outline: none;
 }
 
-/* Текст логотипу */
 QLabel#label_BrandName {
     font-size: 20px;
     font-weight: bold;
-    color: #F9F5F0; /* Глибокий зелений */
+    color: #F9F5F0; 
     background: #344f1f;
     letter-spacing: 0.5px;
     padding-top: 16px; 
@@ -104,7 +106,7 @@ QLabel#label_BrandSub {
 
 
 QListWidget::item:disabled {
-    color: #8C7B6E;           
+    color: #958a78;           
     font-size: 10px;           
     font-weight: bold;         
     padding-top: 18px;        
@@ -126,8 +128,8 @@ QListWidget::item:disabled:selected {
 
 QPushButton {
     background-color: #FFFFFF;
-    color: #344F1F; /* Black Forest */
-    border: 1.4px solid #344f1f; /* Olive Leaf */
+    color: #344F1F;
+    border: 1.5px solid #e0cfb3; 
     border-radius: 20px;
     padding: 8px 20px;
     font-size: 13px;
@@ -136,29 +138,29 @@ QPushButton {
 }
 
 QPushButton:hover {
-    background-color: #f9f5f0; /* Olive Leaf */
-    border-color: #344f1f;
-    color: #344f1f; /* Cornsilk */
+    background-color: #f2ead3; 
+    border-color: #e0cfb3;
+    color: #344f1f; 
 }
 
 QPushButton:pressed {
-    background-color: #344F1F; /* Black Forest */
-    border-color: #344F1F;
-    color: #f9f5f0;
+    background-color: #f4991a; 
+    border-color: #f4991a;
+    color: #ffffff;
 }
 
 QPushButton:disabled {
-    background-color: #F9F5F0; /* Cornsilk */
-    color: #606C38; /* Olive Leaf */
-    border-color: #F2EAD3; /* Light Caramel */
+    background-color: #f2ead3; 
+    color: #344f1f;
+    border-color: #e0cfb3; 
 }
 
 
 
 
 QPushButton#pushButton_Add {
-    background-color: #F4991A; /* Copper */
-    color: #F9F5F0; /* Cornsilk */
+    background-color: #F4991A; 
+    color: #F9F5F0; 
     border: none;
     border-radius: 20px;
     padding: 10px 28px;
@@ -167,17 +169,17 @@ QPushButton#pushButton_Add {
     letter-spacing: 0.3px;
 }
 
-QPushButton#pushButton_Add:hover { background-color: #df8912; /* Darker Copper */ }
-QPushButton#pushButton_Add:pressed { background-color: #c4780e; /* Even Darker Copper */ }
+QPushButton#pushButton_Add:hover { background-color: #df8912;  }
+QPushButton#pushButton_Add:pressed { background-color: #c4780e;  }
 QPushButton#pushButton_Add:disabled { background-color: #c4780e; color: rgba(240, 132, 8, 0.7); }
 
 
 QPushButton#pushButton,
 QPushButton#pushButton_SelectImage {
-    background-color: #F4991A; /* Copper */
-    color: #F9F5F0; /* Cornsilk */
+    background-color: #F4991A; 
+    color: #F9F5F0; 
     border: none;
-    border-radius: 20px;
+    border-radius: 18px;
     padding: 10px 28px;
     font-weight: bold;
     font-size: 13px;
@@ -185,21 +187,20 @@ QPushButton#pushButton_SelectImage {
 }
 
 QPushButton#pushButton:hover,
-QPushButton#pushButton_SelectImage:hover { background-color: #df8912; /* Darker Copper */ }
+QPushButton#pushButton_SelectImage:hover { background-color: #df8912;  }
 QPushButton#pushButton:pressed,
-QPushButton#pushButton_SelectImage:pressed { background-color: #c4780e; /* Even Darker Copper */ }
+QPushButton#pushButton_SelectImage:pressed { background-color: #c4780e;  }
 QPushButton#pushButton:disabled,
 QPushButton#pushButton_SelectImage:disabled { background-color: #c4780e; color: rgba(240, 132, 8, 0.7); }
 
-/* Ghost / outline action (Cancel, Back) */
 QPushButton#pushButton_Cancel,
 QPushButton#pushButton_Edit,
 QPushButton#pushButton_Back,
 QPushButton#pushButton_ClearImage {
-    background-color: transparent;
+    background-color: #ffffff;
     color: #344F1F; /* Black Forest */
-    border: 1.4px solid #344f1f; /* Olive Leaf */
-    border-radius: 20px;
+    border: 1.5px solid #f2ead3; 
+    border-radius: 18px;
     padding: 9px 22px;
     font-weight: 500;
 }
@@ -208,18 +209,19 @@ QPushButton#pushButton_Cancel:hover,
 QPushButton#pushButton_Edit:hover,
 QPushButton#pushButton_Back:hover,
 QPushButton#pushButton_ClearImage:hover {
-    background-color: #344f1f; /* Olive Leaf */
-    color: #F9F5F0; /* Cornsilk */
+    background-color: #f2ead3;
+    border: 1.5px solid #f2ead3;
+    color: #344f1f; 
 }
 
 QPushButton#pushButton_Cancel:pressed,
 QPushButton#pushButton_Edit:pressed,
 QPushButton#pushButton_Back:pressed,
-QPushButton#pushButton_ClearImage:pressed { background-color: #344F1F; /* Black Forest */ }
+QPushButton#pushButton_ClearImage:pressed { background-color: #e0cfb3; border: 1.5px solid #e0cfb3; }
 
 
 /* ============================================================
-   4. FILTER CHIPS — checkable QPushButton pills
+   4. FILTER CHIPS 
    ============================================================ */
 
 QPushButton#pushButton_All,
@@ -229,9 +231,9 @@ QPushButton#pushButton_Deserts,
 QPushButton#pushButton_Evening,
 QPushButton#pushButton_Another,
 QPushButton[class="filterChip"] {
-    background-color: #FFFFFF;
-    color: #344F1F; /* Black Forest */
-    border: 1.45px solid #F2EAD3; /* Light Caramel */
+    background-color: #f2ead3;
+    color: #344F1F; 
+    border: 1.5px solid #f2ead3; 
     border-radius: 20px;
     padding: 5px 18px;
     font-size: 13px;
@@ -247,9 +249,9 @@ QPushButton#pushButton_Deserts:hover,
 QPushButton#pushButton_Evening:hover,
 QPushButton#pushButton_Another:hover,
 QPushButton[class="filterChip"]:hover {
-    background-color: #f9f5f0; /* Cornsilk */
-    color: #344f1f; /* Copper */
-    border-color: #f2ead3; /* Copper */
+    background-color: #e0cfb3; 
+    color: #344F1F; 
+    border-color: #e0cfb3; 
 }
 
 QPushButton#pushButton_All:pressed,
@@ -259,12 +261,11 @@ QPushButton#pushButton_Deserts:pressed,
 QPushButton#pushButton_Evening:pressed,
 QPushButton#pushButton_Another:pressed,
 QPushButton[class="filterChip"]:pressed {
-    background-color: #f4991a; /* Copper */
-    color: #F9F5F0; /* Cornsilk */
-    border-color: #f4991a; /* Copper */
+    background-color: #f4991a; 
+    color: #F9F5F0; 
+    border-color: #f4991a; 
 }
 
-/* Вибраний фільтр (Selected Pill) */
 QPushButton#pushButton_All:checked,
 QPushButton#pushButton_Breakfast:checked,
 QPushButton#pushButton_Breakfast2:checked,
@@ -272,26 +273,26 @@ QPushButton#pushButton_Deserts:checked,
 QPushButton#pushButton_Evening:checked,
 QPushButton#pushButton_Another:checked,
 QPushButton[class="filterChip"]:checked {
-    background-color: #F4991A; /* Copper */
-    color: #F9F5F0; /* Cornsilk */
-    border-color: #F4991A; /* Copper */
+    background-color: #F4991A; 
+    color: #F9F5F0; 
+    border-color: #F4991A; 
     font-weight: bold;
 }
 
 
 /* ============================================================
-   5. RECIPE CARDS — QFrame / RecipeCard widget
+   5. RECIPE CARDS 
    ============================================================ */
 
 QFrame[class="recipeCard"], RecipeCard {
-    background-color: #f9f5f0;
-    border: 1.4px solid #F2EAD3; /* Light Caramel */
+    background-color: #ffffff;
+    border: 1.5px solid #f2ead3; 
     border-radius: 14px;
 }
 
 QFrame[class="recipeCard"]:hover, RecipeCard:hover {
-    border: 1.5px solid #f2ead3; /* Copper Accent */
-    background-color: #f9f5f0; /* Cornsilk */
+    border: 1.5px solid #e0cfb3; 
+    background-color: #ffffff; 
 }
 
 RecipeCard QWidget, RecipeCard QLabel, RecipeCard QFrame {
@@ -300,8 +301,8 @@ RecipeCard QWidget, RecipeCard QLabel, RecipeCard QFrame {
 }
 
 RecipeCard #label_image {
-    background-color: #f2ead3; /* Cornsilk */
-    color: #344f1f; /* Olive Leaf */
+    background-color: #f2ead3; 
+    color: #344f1f; 
     font-size: 11px;
     border-top-left-radius: 13px;
     border-top-right-radius: 13px;
@@ -313,15 +314,15 @@ RecipeCard #label_image {
 RecipeCard #label_title {
     font-size: 14px;
     font-weight: bold;
-    color: #344F1F; /* Black Forest */
+    color: #344F1F; 
     background: transparent;
     padding: 8px 12px 2px 12px;
 }
 
 RecipeCard #label_category {
-    background-color: #f2ead3; /* Cornsilk */
-    color: #344f1f; /* Copper */
-    border-radius: 5px;
+    background-color: #f2ead3; 
+    color: #344f1f; 
+    border-radius: 10px;
     font-size: 10px;
     font-weight: bold;
     padding: 3px 8px;
@@ -331,9 +332,9 @@ RecipeCard #label_category {
 }
 
 RecipeCard #label_difficulty {
-    background-color: #f2ead3; /* Cornsilk */
-    color: #344f1f; /* Olive Leaf */
-    border-radius: 5px;
+    background-color: #f2ead3; 
+    color: #344f1f; 
+    border-radius: 10px;
     font-size: 10px;
     font-weight: bold;
     padding: 3px 8px;
@@ -342,14 +343,13 @@ RecipeCard #label_difficulty {
     max-height: 20px;
 }
 
-/* Subbing the old green/yellow/red for palette colors */
 RecipeCard #label_difficulty[difficultyLevel="easy"] { 
     background-color: #cde9b7; 
     color: #344f1f; 
 } 
 
 RecipeCard #label_difficulty[difficultyLevel="medium"] { 
-    background-color: #f2ead3; 
+    background-color: #f8f4b7; 
     color: #f4991a; 
 } 
 
@@ -360,20 +360,20 @@ RecipeCard #label_difficulty[difficultyLevel="hard"] {
 
 RecipeCard #pushButton_Favourite {
     background-color: #ffffff;
-    color: #cc0000; /* Light Caramel */
-    font-size: 15px;
+    color: #cc0000;
+    font-size: 18px;
     border: none;
-    border-radius: 14px;
-    min-width: 28px;
-    max-width: 28px;
-    min-height: 28px;
-    max-height: 28px;
+    border-radius: 16px;
+    min-width: 32px;
+    max-width: 32px;
+    min-height: 32px;
+    max-height: 32px;
     padding: 0px;
     margin: 6px 10px 6px 0px;
 }
 
-RecipeCard #pushButton_Favourite:hover { background-color: #FFFFFF; color: #cc0000; /* Copper */ }
-RecipeCard #pushButton_Favourite[isFavorite="true"] { color: #cc0000; /* Copper */ background-color: rgba(255, 255, 255, 230); font-weight: bold; }
+RecipeCard #pushButton_Favourite:hover { background-color: #FFFFFF; color: #cc0000; }
+RecipeCard #pushButton_Favourite[isFavorite="true"] { color: #cc0000;  background-color: rgba(255, 255, 255, 230); font-weight: bold; }
 
 
 /* ============================================================
@@ -382,71 +382,71 @@ RecipeCard #pushButton_Favourite[isFavorite="true"] { color: #cc0000; /* Copper 
 
 QLineEdit, QPlainTextEdit, QTextEdit, QTextBrowser {
     background-color: #FFFFFF;
-    border: 1.4px solid #F2EAD3; /* Light Caramel */
+    border: 1.5px solid #f2ead3; 
     border-radius: 15px;
     padding: 9px 14px;
-    color: #344F1F; /* Black Forest */
+    color: #344F1F; 
     font-size: 13px;
-    selection-background-color: #F2EAD3; /* Light Caramel */
-    selection-color: #F9F5F0; /* Cornsilk */
+    selection-background-color: #f2ead3; 
+    selection-color: #344f1f; 
 }
 
-QLineEdit:hover, QPlainTextEdit:hover { border: 1.4px solid #F2EAD3; /* Copper */ }
-QLineEdit:focus, QPlainTextEdit:focus, QTextEdit:focus { border: 1.5px solid #F2EAD3; background-color: #F9F5F0; outline: none; }
-QLineEdit:disabled, QPlainTextEdit:disabled { background-color: #F9F5F0; color: #344f1f; border-color: #F2EAD3; }
+QLineEdit:hover, QPlainTextEdit:hover { border: 1.5px solid #e0cfb3; }
+QLineEdit:focus, QPlainTextEdit:focus, QTextEdit:focus { border: 1.5px solid #e0cfb3; background-color: #ffffff; outline: none; }
+QLineEdit:disabled, QPlainTextEdit:disabled { background-color: #e0cfb3; color: #344f1f; border-color: #e0cfb3; }
 
 QLineEdit#lineEdit_Search {
     border-radius: 20px;
     padding: 8px 16px 8px 16px; 
-    border: 1.4px solid #F2EAD3; /* Light Caramel */
+    border: 1.5px solid #f2ead3; 
     background-color: #FFFFFF;
     font-size: 13px;
 }
-QLineEdit#lineEdit_Search:focus { border: 1.5px solid #f2ead3; background-color: #F9F5F0; }
+QLineEdit#lineEdit_Search:focus { border: 1.5px solid #e0cfb3; background-color: #ffffff; }
 
 
 /* ============================================================
    7. LABELS — visual hierarchy
    ============================================================ */
 
-QLabel { color: #344F1F; /* Black Forest */ background-color: transparent; font-size: 13px; }
+QLabel { color: #344F1F;  background-color: transparent; font-size: 13px; }
 
 QLabel#label_PageTitle { font-size: 22px; font-weight: bold; color: #344F1F; background: transparent; letter-spacing: 0.2px; }
 QLabel#label_DetailTitle { font-size: 20px; font-weight: bold; color: #344F1F; background: transparent; }
-QLabel#label_DetailInfo, QLabel[class="secondaryLabel"] { font-size: 12px; color: #344f1f; /* Olive Leaf */ background: transparent; }
+QLabel#label_DetailInfo, QLabel[class="secondaryLabel"] { font-size: 12px; color: #344f1f;  background: transparent; }
 
 QLabel#label_Name, QLabel#label_Category, QLabel#label_PrepTime,
 QLabel#label_CookTime, QLabel#label_Difficulty, QLabel#label_Ingredients,
 QLabel#label_Notes, QLabel[class="fieldLabel"] {
     font-size: 11px;
     font-weight: bold;
-    color: #344F1F; /* Black Forest */
+    color: #344F1F; 
     background: transparent;
     letter-spacing: 0.6px;
 }
 
 QLabel#label_DetailImage {
-    background-color: #F9F5F0; /* Cornsilk */
+    background-color: #F9F5F0; 
     border-radius: 14px;
-    color: #344f1f; /* Olive Leaf */
+    color: #344f1f; 
     font-size: 13px;
-    border: 1.5px solid #F2EAD3; /* Light Caramel */
+    border: 1.5px solid #e0cfb3; 
 }
 
 
 QLabel#label_PageTitle2 {
-    color: #8C7B6E;
+    color: #958a78;
     background: transparent;
 }
 
 /* ============================================================
-   8. SCROLLBARS — minimal, warm-toned
+   8. SCROLLBARS 
    ============================================================ */
 
 QScrollArea { border: none; background-color: transparent; }
 
 #scrollAreaWidgetContents {
-    background-color: #ffffff; 
+    background-color: #f9f5f0; 
 }
 
 QScrollBar:vertical {
@@ -456,9 +456,9 @@ QScrollBar:vertical {
     border-radius: 3px;
 }
 
-QScrollBar::handle:vertical { background: #344f1f; /* Light Caramel */ border-radius: 3px; min-height: 36px; }
-QScrollBar::handle:vertical:hover { background: #344f1f; /* Copper */ }
-QScrollBar::handle:vertical:pressed { background: #344f1f; /* Olive Leaf */ }
+QScrollBar::handle:vertical { background: #344f1f;  border-radius: 3px; min-height: 36px; }
+QScrollBar::handle:vertical:hover { background: #344f1f;  }
+QScrollBar::handle:vertical:pressed { background: #344f1f;  }
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical,
 QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical { background: transparent; height: 0px; border: none; }
 QScrollBar:horizontal { height: 0px; background: transparent; }
@@ -470,15 +470,15 @@ QScrollBar:horizontal { height: 0px; background: transparent; }
 
 QComboBox {
     background-color: #FFFFFF;
-    border: 1.4px solid #F2EAD3; /* Light Caramel */
+    border: 1.5px solid #f2ead3; 
     border-radius: 15px;
     padding: 8px 14px;
-    color: #344F1F; /* Black Forest */
+    color: #344F1F; 
     font-size: 13px;
 }
 
-QComboBox:hover { border: 1.5px solid #F2EAD3; /* Copper */ }
-QComboBox:focus { border: 1.5px solid #F2EAD3; background-color: #F9F5F0; /* Cornsilk */ }
+QComboBox:hover { border: 1.5px solid #e0cfb3;  }
+QComboBox:focus { border: 1.5px solid #e0cfb3; background-color: #ffffff; }
 
 QComboBox::drop-down {
     border: none;
@@ -495,11 +495,11 @@ QComboBox QAbstractItemView {
 QComboBox QAbstractItemView::item {
     padding: 8px 12px;
     border-radius: 6px;
-    color: #344F1F; /* Black Forest */
+    color: #344F1F;
 }
 
-QComboBox QAbstractItemView::item:hover { background-color: #f9f5f0; color: #344f1f; }
-QComboBox QAbstractItemView::item:selected { background-color: #f9f5f0; color: #344f1f; }
+QComboBox QAbstractItemView::item:hover { background-color: #f2ead3; color: #344f1f; }
+QComboBox QAbstractItemView::item:selected { background-color: #f2ead3; color: #344f1f; }
 
 
 /* ============================================================
@@ -507,9 +507,9 @@ QComboBox QAbstractItemView::item:selected { background-color: #f9f5f0; color: #
    ============================================================ */
 
 QStatusBar {
-    background-color: #F9F5F0; /* Cornsilk */
-    border-top: 1px solid #F2EAD3; /* Light Caramel */
-    color: #344f1f; /* Olive Leaf */
+    background-color: #F9F5F0; 
+    border-top: 1px solid #F2EAD3; 
+    color: #344f1f; 
     font-size: 11px;
 }
 
@@ -518,10 +518,10 @@ QStatusBar::item { border: none; }
 QTextBrowser#textBrowser_Ingredients,
 QTextBrowser#textBrowser_Notes {
     background-color: #FFFFFF;
-    border: 1.4px solid #F2EAD3; /* Light Caramel */
+    border: 1.5px solid #F2EAD3; 
     border-radius: 15px;
     padding: 14px;
-    color: #344F1F; /* Black Forest */
+    color: #344F1F; 
     font-size: 13px;
 }
 
@@ -532,9 +532,9 @@ RecipeDetailsPage QTextBrowser#textBrowser_Meta {
 }
 
 RecipeDetailsPage QLabel#label_DetailImage {
-    background-color: #f4f1eb;
+    background-color: #f2ead3;
     border-radius: 16px;
-    color: #8a9a7a;
+    color: #e0cfb3;
 }
 
 RecipeDetailsPage QTextBrowser#textBrowser_Ingredients,
@@ -544,8 +544,8 @@ RecipeDetailsPage QTextBrowser#textBrowser_Notes {
 }
 
 AddRecipePage QLabel#label_ImagePreview {
-    background-color: #f9f5f0;
+    background-color: #f2ead3;
     border: 1px dashed #f2ead3;
     border-radius: 12px;
-    color: #8a9a7a;
+    color: #e0cfb3;
 }
