@@ -4,6 +4,8 @@
 #include <QWidget>
 #include "models/Recipe.h"
 
+class QResizeEvent;
+
 namespace Ui { class RecipeDetailsPage; }
 
 class RecipeDetailsPage : public QWidget
@@ -14,13 +16,23 @@ public:
     explicit RecipeDetailsPage(QWidget *parent = nullptr);
     ~RecipeDetailsPage();
 
-    void loadRecipe(const Recipe& recipe);
+    void loadRecipe(const Recipe &recipe);
 
 signals:
     void backClicked();
+    void editRequested(int recipeId);
+
+protected:
+    void resizeEvent(QResizeEvent *event) override;
 
 private:
+    void updateHeroImage();
+    void applyMetaHtml(const Recipe &recipe);
+
     Ui::RecipeDetailsPage *ui;
+    int m_recipeId = 0;
+    QString m_heroImagePath;
+    static constexpr int kHeroCornerRadius = 16;
 };
 
 #endif // RECIPEDETAILSPAGE_H

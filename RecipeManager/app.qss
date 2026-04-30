@@ -172,7 +172,8 @@ QPushButton#pushButton_Add:pressed { background-color: #c4780e; /* Even Darker C
 QPushButton#pushButton_Add:disabled { background-color: #c4780e; color: rgba(240, 132, 8, 0.7); }
 
 
-QPushButton#pushButton {
+QPushButton#pushButton,
+QPushButton#pushButton_SelectImage {
     background-color: #F4991A; /* Copper */
     color: #F9F5F0; /* Cornsilk */
     border: none;
@@ -183,14 +184,18 @@ QPushButton#pushButton {
     letter-spacing: 0.3px;
 }
 
-QPushButton#pushButton:hover { background-color: #df8912; /* Darker Copper */ }
-QPushButton#pushButton:pressed { background-color: #c4780e; /* Even Darker Copper */ }
-QPushButton#pushButton:disabled { background-color: #c4780e; color: rgba(240, 132, 8, 0.7); }
+QPushButton#pushButton:hover,
+QPushButton#pushButton_SelectImage:hover { background-color: #df8912; /* Darker Copper */ }
+QPushButton#pushButton:pressed,
+QPushButton#pushButton_SelectImage:pressed { background-color: #c4780e; /* Even Darker Copper */ }
+QPushButton#pushButton:disabled,
+QPushButton#pushButton_SelectImage:disabled { background-color: #c4780e; color: rgba(240, 132, 8, 0.7); }
 
 /* Ghost / outline action (Cancel, Back) */
 QPushButton#pushButton_Cancel,
 QPushButton#pushButton_Edit,
-QPushButton#pushButton_Back {
+QPushButton#pushButton_Back,
+QPushButton#pushButton_ClearImage {
     background-color: transparent;
     color: #344F1F; /* Black Forest */
     border: 1.4px solid #344f1f; /* Olive Leaf */
@@ -201,14 +206,16 @@ QPushButton#pushButton_Back {
 
 QPushButton#pushButton_Cancel:hover,
 QPushButton#pushButton_Edit:hover,
-QPushButton#pushButton_Back:hover {
+QPushButton#pushButton_Back:hover,
+QPushButton#pushButton_ClearImage:hover {
     background-color: #344f1f; /* Olive Leaf */
     color: #F9F5F0; /* Cornsilk */
 }
 
 QPushButton#pushButton_Cancel:pressed,
 QPushButton#pushButton_Edit:pressed,
-QPushButton#pushButton_Back:pressed { background-color: #344F1F; /* Black Forest */ }
+QPushButton#pushButton_Back:pressed,
+QPushButton#pushButton_ClearImage:pressed { background-color: #344F1F; /* Black Forest */ }
 
 
 /* ============================================================
@@ -363,7 +370,6 @@ RecipeCard #pushButton_Favourite {
     max-height: 28px;
     padding: 0px;
     margin: 6px 10px 6px 0px;
-    qproperty-alignment: AlignCenter;
 }
 
 RecipeCard #pushButton_Favourite:hover { background-color: #FFFFFF; color: #cc0000; /* Copper */ }
@@ -517,4 +523,29 @@ QTextBrowser#textBrowser_Notes {
     padding: 14px;
     color: #344F1F; /* Black Forest */
     font-size: 13px;
+}
+
+RecipeDetailsPage QTextBrowser#textBrowser_Meta {
+    background-color: transparent;
+    border: none;
+    padding: 0 0 8px 0;
+}
+
+RecipeDetailsPage QLabel#label_DetailImage {
+    background-color: #f4f1eb;
+    border-radius: 16px;
+    color: #8a9a7a;
+}
+
+RecipeDetailsPage QTextBrowser#textBrowser_Ingredients,
+RecipeDetailsPage QTextBrowser#textBrowser_Notes {
+    padding: 12px 14px;
+    border-radius: 14px;
+}
+
+AddRecipePage QLabel#label_ImagePreview {
+    background-color: #f9f5f0;
+    border: 1px dashed #f2ead3;
+    border-radius: 12px;
+    color: #8a9a7a;
 }

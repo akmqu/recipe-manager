@@ -1,12 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "database/DatabaseManager.h"
+#include "utils/RecipeImageStorage.h"
 #include <QMessageBox>
 #include <QDebug>
 #include <QTimer>
 
 namespace {
-// QListWidget sidebar row indices (must match mainwindow.ui)
+// QListWidget sidebar row indices 
 constexpr int kMenuAllRecipes = 1;
 constexpr int kMenuFavorites = 2;
 constexpr int kMenuMealPlanner = 4;
@@ -101,18 +102,30 @@ void MainWindow::setupConnections()
             this, &MainWindow::onCardClicked);
     connect(m_allRecipesPage, &AllRecipesPage::favoriteClicked,
             this, &MainWindow::onFavoriteClicked);
+    connect(m_favoritesPage, &FavoritesPage::cardClicked,
+            this, &MainWindow::onCardClicked);
+    connect(m_favoritesPage, &FavoritesPage::favoriteClicked,
+            this, &MainWindow::onFavoriteClicked);
 
     // AddRecipePage
     connect(m_addRecipePage, &AddRecipePage::recipeSaved,
             this, &MainWindow::onRecipeSaved);
-    connect(m_addRecipePage, &AddRecipePage::cancelled, this, [this]{
-        showPage(m_allRecipesPage, kMenuAllRecipes);
+    connect(m_addRecipePage, &AddRecipePage::cancelled, this, [this](int previousEditRecipeId) {
+        if (previousEditRecipeId > 0) {
+            const Recipe r = DatabaseManager::instance().getRecipeById(previousEditRecipeId);
+            m_recipeDetailsPage->loadRecipe(r);
+            showPage(m_recipeDetailsPage, kNoMenuSync);
+        } else {
+            showPage(m_allRecipesPage, kMenuAllRecipes);
+        }
     });
 
     // RecipeDetailsPage
     connect(m_recipeDetailsPage, &RecipeDetailsPage::backClicked, this, [this]{
         showPage(m_allRecipesPage, kMenuAllRecipes);
     });
+    connect(m_recipeDetailsPage, &RecipeDetailsPage::editRequested,
+            this, &MainWindow::onEditRecipeRequested);
 
     connect(m_allRecipesPage, &AllRecipesPage::addClicked, this, [this] {
         showPage(m_addRecipePage, kMenuAddRecipe);
@@ -142,22 +155,77 @@ void MainWindow::refreshRecipeList()
     const QList<Recipe> recipes = DatabaseManager::instance().getAllRecipes();
     qDebug() << "Recipes loaded:" << recipes.size();
     m_allRecipesPage->refreshRecipes(recipes);
+    m_favoritesPage->refreshRecipes(recipes);
 }
 
-void MainWindow::onRecipeSaved(const Recipe& recipe)
+void MainWindow::onRecipeSaved(const Recipe &recipeIn)
 {
-    // MainWindow owns all DB writes
-    const bool ok = (recipe.id == -1)
-        ? DatabaseManager::instance().addRecipe(recipe)
-        : DatabaseManager::instance().updateRecipe(recipe);
+    const bool wasEditingExisting = recipeIn.id > 0;
+    Recipe recipe = recipeIn;
+    const QString srcImage = recipe.imagePath.trimmed();
 
-    if (ok) {
-        refreshRecipeList();
-        showPage(m_allRecipesPage, kMenuAllRecipes);
+    if (recipe.id <= 0) {
+        recipe.imagePath.clear();
+        recipe.isFavorite = false;
+        if (!DatabaseManager::instance().addRecipe(recipe)) {
+            QMessageBox::critical(this, QStringLiteral("Błąd zapisu"),
+                                  DatabaseManager::instance().lastError());
+            return;
+        }
+
+        const QString stored = RecipeImageStorage::importForRecipe(recipe.id, srcImage);
+        if (!srcImage.isEmpty() && stored.isEmpty()) {
+            QMessageBox::warning(this, QStringLiteral("Obraz"),
+                                 QStringLiteral("Nie udało się skopiować zdjęcia — przepis zapisany bez obrazu."));
+        }
+        if (!DatabaseManager::instance().setRecipeImagePath(recipe.id, stored)) {
+            QMessageBox::critical(this, QStringLiteral("Błąd zapisu"),
+                                  DatabaseManager::instance().lastError());
+            return;
+        }
     } else {
-        QMessageBox::critical(this, "Błąd zapisu",
-                              DatabaseManager::instance().lastError());
+        QString imgForDb;
+        if (srcImage.isEmpty()) {
+            imgForDb.clear();
+        } else {
+            imgForDb = RecipeImageStorage::importForRecipe(recipe.id, srcImage);
+            if (imgForDb.isEmpty()) {
+                if (RecipeImageStorage::isManagedPath(srcImage))
+                    imgForDb = srcImage;
+                else {
+                    QMessageBox::warning(this, QStringLiteral("Obraz"),
+                                         QStringLiteral("Nie udało się zapisać pliku obrazu."));
+                    return;
+                }
+            }
+        }
+        recipe.imagePath = imgForDb;
+        if (!DatabaseManager::instance().updateRecipe(recipe)) {
+            QMessageBox::critical(this, QStringLiteral("Błąd zapisu"),
+                                  DatabaseManager::instance().lastError());
+            return;
+        }
     }
+
+    refreshRecipeList();
+    m_addRecipePage->clearForm();
+
+    if (wasEditingExisting) {
+        const Recipe updated = DatabaseManager::instance().getRecipeById(recipe.id);
+        m_recipeDetailsPage->loadRecipe(updated);
+        showPage(m_recipeDetailsPage, kNoMenuSync);
+    } else {
+        showPage(m_allRecipesPage, kMenuAllRecipes);
+    }
+}
+
+void MainWindow::onEditRecipeRequested(int recipeId)
+{
+    const Recipe r = DatabaseManager::instance().getRecipeById(recipeId);
+    if (r.id <= 0)
+        return;
+    m_addRecipePage->loadForEdit(r);
+    showPage(m_addRecipePage, kNoMenuSync);
 }
 
 void MainWindow::onFavoriteClicked(int id, bool isFavorite)
@@ -165,7 +233,9 @@ void MainWindow::onFavoriteClicked(int id, bool isFavorite)
     if (!DatabaseManager::instance().setFavorite(id, isFavorite)) {
         qWarning() << "setFavorite failed for id=" << id
                    << ":" << DatabaseManager::instance().lastError();
+        return;
     }
+    refreshRecipeList();
 }
 
 void MainWindow::onCardClicked(int id)

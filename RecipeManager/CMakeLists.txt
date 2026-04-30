@@ -21,22 +21,23 @@ set(PROJECT_SOURCES
     mainwindow.ui
     resources.qrc
 
-    # Baza danych
     database/DatabaseManager.cpp
     database/DatabaseManager.h
 
-    # Modele
+    utils/RecipeImageStorage.cpp
+    utils/RecipeImageStorage.h
+
     models/Recipe.h
 
-    # Widgety
     widgets/recipecard.cpp
     widgets/recipecard.h
     widgets/recipecard.ui
+    widgets/RecipeGridBrowser.cpp
+    widgets/RecipeGridBrowser.h
+    widgets/recipegridbrowser.ui
 
-    # Strony
     pages/AllRecipesPage.cpp
     pages/AllRecipesPage.h
-    pages/AllRecipesPage.ui    
     pages/AddRecipePage.cpp
     pages/AddRecipePage.h
     pages/AddRecipePage.ui 
@@ -44,7 +45,6 @@ set(PROJECT_SOURCES
 
     pages/FavoritesPage.cpp
     pages/FavoritesPage.h
-    pages/FavoritesPage.ui
     pages/ShoppingListPage.cpp
     pages/ShoppingListPage.h
     pages/ShoppingListPage.ui

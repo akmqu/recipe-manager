@@ -2,8 +2,9 @@
 #define FAVORITESPAGE_H
 
 #include <QWidget>
+#include "models/Recipe.h"
 
-namespace Ui { class FavoritesPage; }
+class RecipeGridBrowser;
 
 class FavoritesPage : public QWidget
 {
@@ -11,10 +12,15 @@ class FavoritesPage : public QWidget
 
 public:
     explicit FavoritesPage(QWidget *parent = nullptr);
-    ~FavoritesPage();
+
+    void refreshRecipes(const QList<Recipe> &recipes);
+
+signals:
+    void cardClicked(int id);
+    void favoriteClicked(int id, bool isFavorite);
 
 private:
-    Ui::FavoritesPage *ui;
+    RecipeGridBrowser *m_browser = nullptr;
 };
 
 #endif // FAVORITESPAGE_H

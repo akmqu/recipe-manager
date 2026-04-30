@@ -27,6 +27,7 @@ private slots:
     void onCardClicked(int id);
     void onFavoriteClicked(int id, bool isFavorite);
     void onRecipeSaved(const Recipe& recipe);
+    void onEditRecipeRequested(int recipeId);
     void refreshRecipeList();
 
 private:

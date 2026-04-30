@@ -1,6 +1,9 @@
 #include "recipecard.h"
 #include "ui_recipecard.h"
 #include "models/Recipe.h"
+#include "utils/RecipeImageStorage.h"
+#include <QFile>
+#include <QPixmap>
 #include <QStyle>
 
 RecipeCard::RecipeCard(const Recipe& recipe, QWidget *parent)
@@ -28,8 +31,24 @@ RecipeCard::RecipeCard(const Recipe& recipe, QWidget *parent)
     ui->setupUi(this);
     setAttribute(Qt::WA_StyledBackground, true);
 
-    ui->label_image->setText("Brak zdjęcia");
     ui->label_image->setAlignment(Qt::AlignCenter);
+    ui->label_image->setScaledContents(false);
+
+    if (!recipe.imagePath.isEmpty() && QFile::exists(recipe.imagePath)) {
+        QPixmap pm(recipe.imagePath);
+        if (!pm.isNull()) {
+            QSize box = ui->label_image->size();
+            if (box.width() < 20 || box.height() < 20)
+                box = QSize(260, 160);
+            constexpr int kCardImageRadius = 13;
+            ui->label_image->setPixmap(
+                RecipeImageStorage::coverTopRoundPixmap(pm, box, kCardImageRadius));
+        } else {
+            ui->label_image->setText(QStringLiteral("Brak zdjęcia"));
+        }
+    } else {
+        ui->label_image->setText(QStringLiteral("Brak zdjęcia"));
+    }
     
     ui->label_title->setText(recipe.name);
     ui->label_category->setText(recipe.category);
