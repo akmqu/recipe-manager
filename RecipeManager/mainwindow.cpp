@@ -130,6 +130,30 @@ void MainWindow::setupConnections()
     connect(m_allRecipesPage, &AllRecipesPage::addClicked, this, [this] {
         showPage(m_addRecipePage, kMenuAddRecipe);
     });
+
+    connect(m_recipeDetailsPage, &RecipeDetailsPage::deleteRequested,
+        this, [this](int recipeId) {
+    auto reply = QMessageBox::question(
+        this,
+        QStringLiteral("Usuń przepis"),
+        QStringLiteral("Czy na pewno chcesz usunąć ten przepis? Tej operacji nie można cofnąć."),
+        QMessageBox::Yes | QMessageBox::No,
+        QMessageBox::No);
+
+    if (reply != QMessageBox::Yes)
+        return;
+
+    Recipe r;
+    r.id = recipeId;
+    if (!DatabaseManager::instance().deleteRecipe(r)) {
+        QMessageBox::critical(this, QStringLiteral("Błąd"),
+                              DatabaseManager::instance().lastError());
+        return;
+    }
+
+    refreshRecipeList();
+    showPage(m_allRecipesPage, kMenuAllRecipes);
+});
 }
 
 // ─────────────────────────────────────────
@@ -176,7 +200,7 @@ void MainWindow::onRecipeSaved(const Recipe &recipeIn)
         const QString stored = RecipeImageStorage::importForRecipe(recipe.id, srcImage);
         if (!srcImage.isEmpty() && stored.isEmpty()) {
             QMessageBox::warning(this, QStringLiteral("Obraz"),
-                                 QStringLiteral("Nie udało się skopiować zdjęcia — przepis zapisany bez obrazu."));
+                                 QStringLiteral("Nie udało się skopiować zdjęcia - przepis zapisany bez obrazu."));
         }
         if (!DatabaseManager::instance().setRecipeImagePath(recipe.id, stored)) {
             QMessageBox::critical(this, QStringLiteral("Błąd zapisu"),

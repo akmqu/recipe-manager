@@ -22,6 +22,12 @@ RecipeDetailsPage::RecipeDetailsPage(QWidget *parent)
         if (m_recipeId > 0)
             emit editRequested(m_recipeId);
     });
+
+    connect(ui->pushButton_Delete, &QPushButton::clicked, this, [this] {
+    if (m_recipeId > 0)
+        emit deleteRequested(m_recipeId);
+});
+
 }
 
 RecipeDetailsPage::~RecipeDetailsPage()

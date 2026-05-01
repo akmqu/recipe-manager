@@ -20,6 +20,7 @@ public:
 signals:
     void backClicked();
     void editRequested(int recipeId);
+    void deleteRequested(int recipeId);
 
 protected:
     void resizeEvent(QResizeEvent *event) override;

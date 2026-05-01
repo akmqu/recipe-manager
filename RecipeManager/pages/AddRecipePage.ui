@@ -35,7 +35,7 @@
     <number>0</number>
    </property>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_Header">
+    <layout class="QHBoxLayout" name="horizontalLayout_Header" stretch="0,0,0,0">
      <property name="spacing">
       <number>8</number>
      </property>
@@ -52,18 +52,32 @@
       <number>18</number>
      </property>
      <item>
-      <widget class="QLabel" name="label_PageTitle">
-       <property name="font">
-        <font>
-         <pointsize>16</pointsize>
-         <bold>true</bold>
-         <kerning>true</kerning>
-        </font>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>4</number>
        </property>
-       <property name="text">
-        <string>Dodaj nowy przepis</string>
-       </property>
-      </widget>
+       <item>
+        <widget class="QLabel" name="label_PageTitle">
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <bold>true</bold>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="text">
+          <string>Dodaj nowy przepis</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_PageTitle2">
+         <property name="text">
+          <string>Twój nowy pomysł na idealne danie</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
       <spacer name="hSpacer_Header">
@@ -123,7 +137,7 @@
         <x>0</x>
         <y>0</y>
         <width>1000</width>
-        <height>640</height>
+        <height>635</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_Scroll">

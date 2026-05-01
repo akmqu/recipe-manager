@@ -129,7 +129,7 @@ QListWidget::item:disabled:selected {
 QPushButton {
     background-color: #FFFFFF;
     color: #344F1F;
-    border: 1.5px solid #e0cfb3; 
+    border: 1.5px solid #f2ead3; 
     border-radius: 20px;
     padding: 8px 20px;
     font-size: 13px;
@@ -139,20 +139,20 @@ QPushButton {
 
 QPushButton:hover {
     background-color: #f2ead3; 
-    border-color: #e0cfb3;
+    border-color: #f2ead3;
     color: #344f1f; 
 }
 
 QPushButton:pressed {
-    background-color: #f4991a; 
-    border-color: #f4991a;
-    color: #ffffff;
+    background-color: #e0cfb3; 
+    border-color: #e0cfb3;
+    color: #344f1f;
 }
 
 QPushButton:disabled {
     background-color: #f2ead3; 
     color: #344f1f;
-    border-color: #e0cfb3; 
+    border-color: #f2ead3; 
 }
 
 

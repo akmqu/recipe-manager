@@ -30,7 +30,7 @@
     <number>0</number>
    </property>
    <item>
-    <layout class="QHBoxLayout" name="hl_Header" stretch="0,0,0,0">
+    <layout class="QHBoxLayout" name="hl_Header" stretch="0,0,0,0,0">
      <property name="spacing">
       <number>8</number>
      </property>
@@ -73,6 +73,13 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QLabel" name="label_DetailTitle2">
+         <property name="text">
+          <string>Idealny pomysł na dzisiejsze menu</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
      <item>
@@ -87,6 +94,19 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_Delete">
+       <property name="minimumSize">
+        <size>
+         <width>120</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Usuń</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_Edit">
@@ -130,7 +150,7 @@
         <x>0</x>
         <y>0</y>
         <width>1000</width>
-        <height>640</height>
+        <height>631</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
