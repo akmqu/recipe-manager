@@ -29,7 +29,6 @@ public:
 
 private:
     DatabaseManager() = default;
-    void ensureSchema();
 
     void mapRecipeRow(const QSqlQuery &query, Recipe &r) const;
 

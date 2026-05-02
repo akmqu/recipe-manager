@@ -10,21 +10,8 @@ RecipeGridBrowser::RecipeGridBrowser(QWidget *parent)
 {
     ui->setupUi(this);
 
-    ui->scrollArea->setWidgetResizable(true);
-
-    if (!ui->scrollAreaWidgetContents->layout()) {
-        m_gridLayout = new QGridLayout(ui->scrollAreaWidgetContents);
-        m_gridLayout->setSpacing(20);
-        m_gridLayout->setContentsMargins(20, 20, 20, 20);
-        m_gridLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-        ui->scrollAreaWidgetContents->setLayout(m_gridLayout);
-    } else {
-        m_gridLayout = qobject_cast<QGridLayout *>(
-            ui->scrollAreaWidgetContents->layout());
-    }
-
-    ui->scrollAreaWidgetContents->setSizePolicy(
-        QSizePolicy::Expanding, QSizePolicy::Expanding);
+    m_gridLayout = qobject_cast<QGridLayout *>(ui->scrollAreaWidgetContents->layout());
+    m_gridLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
 
     m_resizeTimer = new QTimer(this);
     m_resizeTimer->setSingleShot(true);

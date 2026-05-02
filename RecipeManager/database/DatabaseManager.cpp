@@ -24,15 +24,8 @@ void DatabaseManager::mapRecipeRow(const QSqlQuery &query, Recipe &r) const
     r.imagePath = query.value(9).toString();
 }
 
-void DatabaseManager::ensureSchema()
-{
-    QSqlQuery q;
-    if (!q.exec(QStringLiteral("ALTER TABLE recipe ADD COLUMN IF NOT EXISTS image_path TEXT"))) {
-        m_lastError = q.lastError().text();
-        qDebug() << "ensureSchema (image_path):" << m_lastError;
-    }
-}
 
+//singleton(only one db)
 DatabaseManager &DatabaseManager::instance()
 {
     static DatabaseManager instance;
@@ -52,7 +45,6 @@ bool DatabaseManager::connect()
         m_lastError = m_db.lastError().text();
         return false;
     }
-    ensureSchema();
     return true;
 }
 
@@ -189,8 +181,7 @@ QList<Recipe> DatabaseManager::getFavorites()
 {
     QList<Recipe> list;
     QSqlQuery query;
-    if (!query.exec(QString(kSelectFields)
-                    + QStringLiteral(" WHERE is_favorite = true ORDER BY recipe_id DESC"))) {
+    if (!query.exec(QString(kSelectFields) + QStringLiteral(" WHERE is_favorite = true ORDER BY recipe_id DESC"))) {
         m_lastError = query.lastError().text();
         return list;
     }

@@ -31,9 +31,6 @@ RecipeCard::RecipeCard(const Recipe& recipe, QWidget *parent)
     ui->setupUi(this);
     setAttribute(Qt::WA_StyledBackground, true);
 
-    ui->label_image->setAlignment(Qt::AlignCenter);
-    ui->label_image->setScaledContents(false);
-
     if (!recipe.imagePath.isEmpty() && QFile::exists(recipe.imagePath)) {
         QPixmap pm(recipe.imagePath);
         if (!pm.isNull()) {
@@ -60,7 +57,7 @@ RecipeCard::RecipeCard(const Recipe& recipe, QWidget *parent)
         diffTag = "medium";
     } else if (recipe.difficulty == "Trudny") {
         diffTag = "hard";
-    }
+    }  
 
     ui->label_difficulty->setProperty("difficultyLevel", diffTag);
     ui->label_difficulty->style()->unpolish(ui->label_difficulty);
@@ -72,8 +69,6 @@ RecipeCard::RecipeCard(const Recipe& recipe, QWidget *parent)
         updateFavoriteButton();
         emit favoriteClicked(m_id, m_isFavorite);
     });
-
-    setCursor(Qt::PointingHandCursor);
 }
 
 RecipeCard::~RecipeCard()

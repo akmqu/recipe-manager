@@ -25,15 +25,13 @@ MainWindow::MainWindow(QWidget *parent)
     this->resize(1280, 720);
 
     if (!DatabaseManager::instance().connect()) {
-        QMessageBox::critical(this, "Błąd bazy danych",
-                              DatabaseManager::instance().lastError());
+        QMessageBox::critical(this, "Błąd bazy danych", DatabaseManager::instance().lastError());
     }
 
     setupPages();
     setupNavigation();
     setupConnections();
 
-    // Defer first load so the window is fully painted before hitting the DB
     QTimer::singleShot(0, this, [this]{ refreshRecipeList(); });
 }
 
@@ -56,13 +54,13 @@ void MainWindow::setupPages()
     m_mealPlannerPage   = new MealPlannerPage(this);
     m_recipeDetailsPage = new RecipeDetailsPage(this);
 
-    ui->stackedWidget->addWidget(m_allRecipesPage);    // stack index 0
-    ui->stackedWidget->addWidget(m_addRecipePage);   // 1
-    ui->stackedWidget->addWidget(m_favoritesPage);    // 2
-    ui->stackedWidget->addWidget(m_shoppingListPage); // 3
-    ui->stackedWidget->addWidget(m_statisticsPage);  // 4
-    ui->stackedWidget->addWidget(m_mealPlannerPage); // 5
-    ui->stackedWidget->addWidget(m_recipeDetailsPage); // 6
+    ui->stackedWidget->addWidget(m_allRecipesPage);    
+    ui->stackedWidget->addWidget(m_addRecipePage);  
+    ui->stackedWidget->addWidget(m_favoritesPage);   
+    ui->stackedWidget->addWidget(m_shoppingListPage);
+    ui->stackedWidget->addWidget(m_statisticsPage); 
+    ui->stackedWidget->addWidget(m_mealPlannerPage); 
+    ui->stackedWidget->addWidget(m_recipeDetailsPage); 
 }
 
 void MainWindow::setupNavigation()
@@ -112,6 +110,7 @@ void MainWindow::setupConnections()
             this, &MainWindow::onRecipeSaved);
     connect(m_addRecipePage, &AddRecipePage::cancelled, this, [this](int previousEditRecipeId) {
         if (previousEditRecipeId > 0) {
+            //if in edit mode
             const Recipe r = DatabaseManager::instance().getRecipeById(previousEditRecipeId);
             m_recipeDetailsPage->loadRecipe(r);
             showPage(m_recipeDetailsPage, kNoMenuSync);
@@ -184,30 +183,28 @@ void MainWindow::refreshRecipeList()
 
 void MainWindow::onRecipeSaved(const Recipe &recipeIn)
 {
-    const bool wasEditingExisting = recipeIn.id > 0;
+    const bool wasEditingExisting = recipeIn.id > 0; //> 0 edit mode
     Recipe recipe = recipeIn;
     const QString srcImage = recipe.imagePath.trimmed();
 
-    if (recipe.id <= 0) {
+    if (recipe.id <= 0) { //new recipe
         recipe.imagePath.clear();
         recipe.isFavorite = false;
         if (!DatabaseManager::instance().addRecipe(recipe)) {
-            QMessageBox::critical(this, QStringLiteral("Błąd zapisu"),
-                                  DatabaseManager::instance().lastError());
+            QMessageBox::critical(this, QStringLiteral("Błąd zapisu"),DatabaseManager::instance().lastError());
             return;
         }
 
-        const QString stored = RecipeImageStorage::importForRecipe(recipe.id, srcImage);
+        const QString stored = RecipeImageStorage::importForRecipe(recipe.id, srcImage); //copy image to app folder and return new path
         if (!srcImage.isEmpty() && stored.isEmpty()) {
             QMessageBox::warning(this, QStringLiteral("Obraz"),
                                  QStringLiteral("Nie udało się skopiować zdjęcia - przepis zapisany bez obrazu."));
         }
         if (!DatabaseManager::instance().setRecipeImagePath(recipe.id, stored)) {
-            QMessageBox::critical(this, QStringLiteral("Błąd zapisu"),
-                                  DatabaseManager::instance().lastError());
-            return;
+            QMessageBox::critical(this, QStringLiteral("Błąd zapisu"), DatabaseManager::instance().lastError());
+            return; //try to save path to db
         }
-    } else {
+    } else { //edit recipe
         QString imgForDb;
         if (srcImage.isEmpty()) {
             imgForDb.clear();
@@ -223,7 +220,7 @@ void MainWindow::onRecipeSaved(const Recipe &recipeIn)
                 }
             }
         }
-        recipe.imagePath = imgForDb;
+        recipe.imagePath = imgForDb; //write new final path to recipe
         if (!DatabaseManager::instance().updateRecipe(recipe)) {
             QMessageBox::critical(this, QStringLiteral("Błąd zapisu"),
                                   DatabaseManager::instance().lastError());
@@ -235,6 +232,7 @@ void MainWindow::onRecipeSaved(const Recipe &recipeIn)
     m_addRecipePage->clearForm();
 
     if (wasEditingExisting) {
+        //edit(get new updatedd recipe from db and show new details)
         const Recipe updated = DatabaseManager::instance().getRecipeById(recipe.id);
         m_recipeDetailsPage->loadRecipe(updated);
         showPage(m_recipeDetailsPage, kNoMenuSync);
