@@ -24,7 +24,7 @@ protected:
 
 signals:
     void recipeSaved(const Recipe &recipe);
-    /** 0 = user was adding a new recipe; >0 = was editing that recipe id. */
+    // 0 = user was adding a new recipe; >0 = was editing that recipe id. 
     void cancelled(int previousEditRecipeId);
 
 private slots:
@@ -45,4 +45,4 @@ private:
     bool validate(const Recipe &recipe) const;
 };
 
-#endif // ADDRECIPEPAGE_H
+#endif 

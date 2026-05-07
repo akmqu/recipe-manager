@@ -12,9 +12,6 @@ RecipeDetailsPage::RecipeDetailsPage(QWidget *parent)
 {
     ui->setupUi(this);
 
-    ui->label_DetailImage->setAlignment(Qt::AlignCenter);
-    ui->label_DetailImage->setScaledContents(false);
-
     connect(ui->pushButton_Back, &QPushButton::clicked,
             this, [this] { emit backClicked(); });
 
@@ -63,8 +60,10 @@ void RecipeDetailsPage::loadRecipe(const Recipe &recipe)
     
     ui->label_MetaCockTime->setText(cookStr);
 
-    ui->textBrowser_Ingredients->setPlainText(recipe.ingredients);
-    ui->textBrowser_Notes->setPlainText(recipe.notes);
+    QString ingredients = recipe.ingredients;
+    QString notes = recipe.notes;
+    ui->textBrowser_Ingredients->setPlainText(ingredients.replace("\\n", "\n"));
+    ui->textBrowser_Notes->setPlainText(notes.replace("\\n", "\n"));
 
     updateHeroImage();
 }

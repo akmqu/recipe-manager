@@ -439,6 +439,11 @@ QLabel#label_PageTitle2 {
     background: transparent;
 }
 
+QLabel#label_PageTitle2, QLabel#label_DetailTitle2 {
+    color: #958a78;
+    background: transparent;
+}
+
 /* ============================================================
    8. SCROLLBARS 
    ============================================================ */
