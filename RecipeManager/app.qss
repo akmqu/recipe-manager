@@ -436,7 +436,7 @@ QLabel#label_PageTitle { font-size: 22px; font-weight: bold; color: #344F1F; bac
 QLabel#label_DetailTitle { font-size: 20px; font-weight: bold; color: #344F1F; background: transparent; }
 QLabel#label_DetailInfo, QLabel[class="secondaryLabel"] { font-size: 12px; color: #344f1f;  background: transparent; }
 
-QLabel#label_Name, QLabel#label_Category, QLabel#label_PrepTime,
+QLabel#label_Name, QLabel#label_Category,QLabel#label_Rating, QLabel#label_PrepTime,
 QLabel#label_CookTime, QLabel#label_Difficulty, QLabel#label_Ingredients,
 QLabel#label_Notes, QLabel[class="fieldLabel"] {
     font-size: 11px;

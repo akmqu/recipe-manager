@@ -104,7 +104,7 @@
         </size>
        </property>
        <property name="text">
-        <string>🗑 Usuń</string>
+        <string> ❌ Usuń</string>
        </property>
       </widget>
      </item>

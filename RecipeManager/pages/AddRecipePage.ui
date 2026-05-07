@@ -234,6 +234,45 @@
          <property name="verticalSpacing">
           <number>6</number>
          </property>
+         <item row="7" column="0">
+          <widget class="QPlainTextEdit" name="plainTextEdit_Ingredients">
+           <property name="placeholderText">
+            <string>np.
+200g makaronu
+100g boczku
+2 jajka
+50g parmezanu</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLineEdit" name="lineEdit_PrepTime">
+           <property name="placeholderText">
+            <string>np. 15</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QLabel" name="label_Notes">
+           <property name="text">
+            <string>INSTRUKCJE &amp; NOTATKI</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLineEdit" name="lineEdit_Name">
+           <property name="placeholderText">
+            <string>np. Spaghetti Carbonara</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_PrepTime">
+           <property name="text">
+            <string>CZAS PRZYGOTOWANIA (min)</string>
+           </property>
+          </widget>
+         </item>
          <item row="6" column="0">
           <widget class="QLabel" name="label_Ingredients">
            <property name="text">
@@ -260,77 +299,10 @@
            </item>
           </widget>
          </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_PrepTime">
-           <property name="text">
-            <string>CZAS PRZYGOTOWANIA (min)</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="0">
-          <widget class="QPlainTextEdit" name="plainTextEdit_Ingredients">
-           <property name="placeholderText">
-            <string>np.
-200g makaronu
-100g boczku
-2 jajka
-50g parmezanu</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLineEdit" name="lineEdit_PrepTime">
-           <property name="placeholderText">
-            <string>np. 15</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="1">
-          <widget class="QPlainTextEdit" name="plainTextEdit_Notes">
-           <property name="placeholderText">
-            <string>Opisz kroki przygotowania...</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLineEdit" name="lineEdit_Name">
-           <property name="placeholderText">
-            <string>np. Spaghetti Carbonara</string>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="0">
           <widget class="QLabel" name="label_Name">
            <property name="text">
             <string>NAZWA PRZEPISU *</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="label_Category">
-           <property name="text">
-            <string>KATEGORIA</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLabel" name="label_Difficulty">
-           <property name="text">
-            <string>POZIOM TRUDNOŚCI</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="1">
-          <widget class="QLabel" name="label_Notes">
-           <property name="text">
-            <string>INSTRUKCJE &amp; NOTATKI</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLineEdit" name="lineEdit_CookTime">
-           <property name="placeholderText">
-            <string>np. 30</string>
            </property>
           </widget>
          </item>
@@ -370,8 +342,42 @@
            </property>
           </widget>
          </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="label_Difficulty">
+           <property name="text">
+            <string>POZIOM TRUDNOŚCI</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLineEdit" name="lineEdit_CookTime">
+           <property name="placeholderText">
+            <string>np. 30</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QPlainTextEdit" name="plainTextEdit_Notes">
+           <property name="placeholderText">
+            <string>Opisz kroki przygotowania...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_Category">
+           <property name="text">
+            <string>KATEGORIA</string>
+           </property>
+          </widget>
+         </item>
          <item row="4" column="1">
           <widget class="QLabel" name="label_Rating">
+           <property name="font">
+            <font>
+             <bold>false</bold>
+             <kerning>true</kerning>
+            </font>
+           </property>
            <property name="text">
             <string>OCENA</string>
            </property>
