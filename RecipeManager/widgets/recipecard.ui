@@ -100,128 +100,172 @@
     </property>
    </widget>
   </widget>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>250</y>
+     <y>200</y>
      <width>301</width>
-     <height>51</height>
+     <height>106</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_Tags" stretch="0,0,0,0,0">
-    <property name="spacing">
-     <number>6</number>
-    </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
     <property name="leftMargin">
-     <number>5</number>
+     <number>10</number>
     </property>
     <property name="topMargin">
-     <number>0</number>
+     <number>10</number>
     </property>
     <property name="rightMargin">
      <number>10</number>
     </property>
     <property name="bottomMargin">
-     <number>0</number>
+     <number>10</number>
     </property>
     <item>
-     <widget class="QLabel" name="label_category">
-      <property name="maximumSize">
-       <size>
-        <width>110</width>
-        <height>22</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>[category]</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">
+      <item>
+       <widget class="QLabel" name="label_title">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>28</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>[title]</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
     </item>
     <item>
-     <widget class="QLabel" name="label_difficulty">
-      <property name="maximumSize">
-       <size>
-        <width>110</width>
-        <height>22</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>[difficulty]</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QLabel" name="label_difficulty">
+        <property name="maximumSize">
+         <size>
+          <width>110</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>[difficulty]</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_category">
+        <property name="maximumSize">
+         <size>
+          <width>110</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>[category]</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
     </item>
     <item>
-     <widget class="QLabel" name="label_rating">
-      <property name="text">
-       <string>[rating]</string>
+     <layout class="QHBoxLayout" name="horizontalLayout_Tags" stretch="0,0,0">
+      <property name="spacing">
+       <number>6</number>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
+      <property name="leftMargin">
+       <number>0</number>
       </property>
-     </widget>
-    </item>
-    <item>
-     <spacer name="hSpacer_Tags">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+      <property name="topMargin">
+       <number>0</number>
       </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>10</width>
-        <height>20</height>
-       </size>
+      <property name="rightMargin">
+       <number>10</number>
       </property>
-     </spacer>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_time">
-      <property name="text">
-       <string>[time]</string>
+      <property name="bottomMargin">
+       <number>0</number>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
+      <item>
+       <widget class="QLabel" name="label_rating">
+        <property name="text">
+         <string>[rating]</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="hSpacer_Tags">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>10</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_time">
+        <property name="text">
+         <string>[time]</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
-  </widget>
-  <widget class="QLabel" name="label_title">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>210</y>
-     <width>301</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>0</width>
-     <height>28</height>
-    </size>
-   </property>
-   <property name="maximumSize">
-    <size>
-     <width>16777215</width>
-     <height>36</height>
-    </size>
-   </property>
-   <property name="text">
-    <string>[title]</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-   </property>
-   <property name="wordWrap">
-    <bool>true</bool>
-   </property>
   </widget>
  </widget>
  <resources/>

@@ -32,11 +32,16 @@ RecipeCard::RecipeCard(const Recipe& recipe, QWidget *parent)
     }
 
     QString starsText;
-    if (recipe.rating > 0) {
-        for (int i = 0; i < recipe.rating; ++i) {
-            starsText += QStringLiteral("★");
-        }
+    int maxStars = 5;
+
+    for (int i = 0; i < recipe.rating; ++i) {
+        starsText += QStringLiteral("★");
     }
+
+    for (int i = recipe.rating; i < maxStars; ++i) {
+        starsText += QStringLiteral("☆");
+    }
+
     ui->label_rating->setText(starsText);
 
    

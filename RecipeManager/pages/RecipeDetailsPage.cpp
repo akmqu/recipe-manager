@@ -65,22 +65,23 @@ void RecipeDetailsPage::loadRecipe(const Recipe &recipe)
     ui->textBrowser_Ingredients->setPlainText(ingredients.replace("\\n", "\n"));
     ui->textBrowser_Notes->setPlainText(notes.replace("\\n", "\n"));
 
-    QString starsText;
-    bool hasRating = (recipe.rating > 0); 
+   QString starsText;
+    int maxStars = 5;
 
-    if (!hasRating) {
-        starsText = QStringLiteral("Brak");
-    } else {
-        for (int i = 0; i < recipe.rating; ++i) {
-            starsText += QStringLiteral("★");
-        }
+    for (int i = 0; i < recipe.rating; ++i) {
+        starsText += QStringLiteral("★");
     }
+
+    for (int i = recipe.rating; i < maxStars; ++i) {
+        starsText += QStringLiteral("☆");
+    }
+
     ui->label_MetaRating->setText(starsText);
 
-    ui->label_MetaRating->setProperty("hasRating", hasRating);
+    bool isActuallyRated = (recipe.rating > 0);
+    ui->label_MetaRating->setProperty("hasRating", isActuallyRated);
     ui->label_MetaRating->style()->unpolish(ui->label_MetaRating);
     ui->label_MetaRating->style()->polish(ui->label_MetaRating);
-
     updateHeroImage();
 }
 

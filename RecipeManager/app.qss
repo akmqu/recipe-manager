@@ -316,30 +316,25 @@ RecipeCard #label_title {
     font-weight: bold;
     color: #344F1F; 
     background: transparent;
-    padding: 8px 12px 2px 12px;
 }
 
 RecipeCard #label_category {
     background-color: #f0e5c7; 
     color: #344f1f; 
-    border-radius: 10px;
-    font-size: 10px;
+    border-radius: 6px;
+    font-size: 12px;
     font-weight: bold;
     padding: 3px 8px;
-    margin-left: 10px;
-    margin-bottom: 6px;
     max-height: 20px;
 }
 
 RecipeCard #label_difficulty {
     background-color: #f0e5c7; 
     color: #344f1f; 
-    border-radius: 10px;
-    font-size: 10px;
+    border-radius: 6px;
+    font-size: 12px;
     font-weight: bold;
-    padding: 3px 8px;
-    margin-right: 10px;
-    margin-bottom: 6px;
+    padding: 3px 10px;
     max-height: 20px;
 }
 
@@ -378,8 +373,6 @@ RecipeCard #pushButton_Favourite[isFavorite="true"] { color: #cc0000;  backgroun
 RecipeCard #label_rating {
     color: #F4991A;
     font-size: 15px;
-    margin-bottom: 6px;
-    margin-left: 2px;
     qproperty-alignment: AlignVCenter;
 }
 
@@ -389,6 +382,9 @@ QComboBox#comboBox_Rating {
     font-size: 13px;
 }
 
+#label_MetaRating[hasRating="false"] {
+    color: #F4991A; }
+
 #label_MetaRating[hasRating="true"],
 QComboBox#comboBox_Rating[hasRating="true"] {
     color: #F4991A;
@@ -397,9 +393,7 @@ QComboBox#comboBox_Rating[hasRating="true"] {
 
 RecipeCard #label_time {
     color: #344f1f;
-    font-size: 11px;
-    margin-bottom: 6px; 
-    margin-right: 8px;
+    font-size: 12px;
     qproperty-alignment: AlignVCenter;
 }
 

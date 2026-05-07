@@ -18,12 +18,6 @@ AddRecipePage::AddRecipePage(QWidget *parent)
     ui->comboBox_Difficulty->setItemDelegate(new QStyledItemDelegate(this));
     ui->comboBox_Rating->setItemDelegate(new QStyledItemDelegate(this));
 
-    connect(ui->comboBox_Rating, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), 
-            this, [this](int index) {
-        ui->comboBox_Rating->setProperty("hasRating", index > 0);
-        ui->comboBox_Rating->style()->unpolish(ui->comboBox_Rating);
-        ui->comboBox_Rating->style()->polish(ui->comboBox_Rating);
-    });
 }
 
 AddRecipePage::~AddRecipePage()
