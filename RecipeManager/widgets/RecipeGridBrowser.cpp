@@ -34,7 +34,7 @@ void RecipeGridBrowser::setPageHeader(const QString &title, const QString &subti
     ui->label_PageTitle2->setText(subtitle);
 }
 
-void RecipeGridBrowser::setAddButtonVisible(bool visible)
+void RecipeGridBrowser::setAddButtonVisible(bool visible)// for btn +
 {
     ui->pushButton_Add->setVisible(visible);
 }
@@ -88,7 +88,7 @@ void RecipeGridBrowser::applyFilters()
         result.erase(
             std::remove_if(result.begin(), result.end(),
                            [this](const Recipe &r) {
-                               return r.category != m_currentCategory;
+                               return r.category != m_currentCategory;//true -> delete
                            }),
             result.end());
     }
@@ -98,7 +98,7 @@ void RecipeGridBrowser::applyFilters()
         result.erase(
             std::remove_if(result.begin(), result.end(),
                            [&text](const Recipe &r) {
-                               return !r.name.contains(text, Qt::CaseInsensitive);
+                               return !r.name.contains(text, Qt::CaseInsensitive);//a A 
                            }),
             result.end());
     }
@@ -117,9 +117,11 @@ int RecipeGridBrowser::calculateColumns() const
 
 void RecipeGridBrowser::loadCards(const QList<Recipe> &recipes)
 {
-    while (QLayoutItem *item = m_gridLayout->takeAt(0)) {
-        if (QWidget *w = item->widget())
+    while (QLayoutItem *item = m_gridLayout->takeAt(0)) { //delete from layout  from first
+        QWidget *w = item->widget();// get the widget stored inside the layout
+        if (w != nullptr) {
             w->deleteLater();
+        }
         delete item;
     }
 
@@ -131,10 +133,8 @@ void RecipeGridBrowser::loadCards(const QList<Recipe> &recipes)
         card->setFixedSize(300, 300);
         m_gridLayout->addWidget(card, row, col);
 
-        connect(card, &RecipeCard::cardClicked,
-                this, &RecipeGridBrowser::cardClicked);
-        connect(card, &RecipeCard::favoriteClicked,
-                this, &RecipeGridBrowser::favoriteClicked);
+        connect(card, &RecipeCard::cardClicked, this, &RecipeGridBrowser::cardClicked);
+        connect(card, &RecipeCard::favoriteClicked, this, &RecipeGridBrowser::favoriteClicked);
 
         if (++col >= columns) {
             col = 0;

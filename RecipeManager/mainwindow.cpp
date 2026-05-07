@@ -53,6 +53,7 @@ void MainWindow::setupPages()
     m_statisticsPage    = new StatisticsPage(this);
     m_mealPlannerPage   = new MealPlannerPage(this);
     m_recipeDetailsPage = new RecipeDetailsPage(this);
+    
 
     ui->stackedWidget->addWidget(m_allRecipesPage);    
     ui->stackedWidget->addWidget(m_addRecipePage);  

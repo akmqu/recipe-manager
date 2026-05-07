@@ -40,6 +40,7 @@ private:
     StatisticsPage*    m_statisticsPage;
     MealPlannerPage*   m_mealPlannerPage;
     RecipeDetailsPage* m_recipeDetailsPage;
+    
 
     void setupPages();
     void setupNavigation();
