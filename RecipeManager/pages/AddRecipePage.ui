@@ -370,6 +370,47 @@
            </property>
           </widget>
          </item>
+         <item row="4" column="1">
+          <widget class="QLabel" name="label_Rating">
+           <property name="text">
+            <string>OCENA</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QComboBox" name="comboBox_Rating">
+           <item>
+            <property name="text">
+             <string>Brak oceny</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>★</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>★★</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>★★★</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>★★★★</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>★★★★★</string>
+            </property>
+           </item>
+          </widget>
+         </item>
         </layout>
        </item>
        <item>

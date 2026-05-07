@@ -12,6 +12,9 @@ RecipeCard::RecipeCard(const Recipe& recipe, QWidget *parent)
     , m_id(recipe.id)
     , m_isFavorite(recipe.isFavorite)
 {
+    ui->setupUi(this);
+    setAttribute(Qt::WA_StyledBackground, true);
+
     int totalTime = recipe.prepTime + recipe.cookTime;
     QString timeText;
 
@@ -28,8 +31,15 @@ RecipeCard::RecipeCard(const Recipe& recipe, QWidget *parent)
         }
     }
 
-    ui->setupUi(this);
-    setAttribute(Qt::WA_StyledBackground, true);
+    QString starsText;
+    if (recipe.rating > 0) {
+        for (int i = 0; i < recipe.rating; ++i) {
+            starsText += QStringLiteral("★");
+        }
+    }
+    ui->label_rating->setText(starsText);
+
+   
 
     if (!recipe.imagePath.isEmpty() && QFile::exists(recipe.imagePath)) {
         QPixmap pm(recipe.imagePath);

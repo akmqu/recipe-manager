@@ -16,6 +16,14 @@ AddRecipePage::AddRecipePage(QWidget *parent)
 
     ui->comboBox_Category->setItemDelegate(new QStyledItemDelegate(this));
     ui->comboBox_Difficulty->setItemDelegate(new QStyledItemDelegate(this));
+    ui->comboBox_Rating->setItemDelegate(new QStyledItemDelegate(this));
+
+    connect(ui->comboBox_Rating, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), 
+            this, [this](int index) {
+        ui->comboBox_Rating->setProperty("hasRating", index > 0);
+        ui->comboBox_Rating->style()->unpolish(ui->comboBox_Rating);
+        ui->comboBox_Rating->style()->polish(ui->comboBox_Rating);
+    });
 }
 
 AddRecipePage::~AddRecipePage()
@@ -42,6 +50,7 @@ void AddRecipePage::clearForm()
     ui->plainTextEdit_Notes->clear();
     ui->comboBox_Category->setCurrentIndex(0);
     ui->comboBox_Difficulty->setCurrentIndex(0);
+    ui->comboBox_Rating->setCurrentIndex(0);
 
     ui->label_PageTitle->setText(QStringLiteral("Dodaj nowy przepis"));
     ui->label_ImagePreview->clear();
@@ -61,6 +70,7 @@ void AddRecipePage::loadForEdit(const Recipe &recipe)
     QString notes = recipe.notes;
     ui->plainTextEdit_Ingredients->setPlainText(ingredients.replace("\\n", "\n"));
     ui->plainTextEdit_Notes->setPlainText(notes.replace("\\n", "\n"));
+    ui->comboBox_Rating->setCurrentIndex(recipe.rating);
 
     const int catIdx = ui->comboBox_Category->findText(recipe.category);
     if (catIdx >= 0)
@@ -129,6 +139,7 @@ Recipe AddRecipePage::collectFormData() const
     r.difficulty = ui->comboBox_Difficulty->currentText();
     r.isFavorite = (m_editId >= 0) ? m_editFavorite : false;
     r.imagePath = m_selectedImagePath.trimmed();
+    r.rating = ui->comboBox_Rating->currentIndex();
     return r;
 }
 

@@ -375,6 +375,33 @@ RecipeCard #pushButton_Favourite {
 RecipeCard #pushButton_Favourite:hover { background-color: #FFFFFF; color: #cc0000; }
 RecipeCard #pushButton_Favourite[isFavorite="true"] { color: #cc0000;  background-color: rgba(255, 255, 255, 230); font-weight: bold; }
 
+RecipeCard #label_rating {
+    color: #F4991A;
+    font-size: 15px;
+    margin-bottom: 6px;
+    margin-left: 2px;
+    qproperty-alignment: AlignVCenter;
+}
+
+#label_MetaRating,
+QComboBox#comboBox_Rating {
+    color: #344F1F;
+    font-size: 13px;
+}
+
+#label_MetaRating[hasRating="true"],
+QComboBox#comboBox_Rating[hasRating="true"] {
+    color: #F4991A;
+    font-size: 15px;
+}
+
+RecipeCard #label_time {
+    color: #344f1f;
+    font-size: 11px;
+    margin-bottom: 6px; 
+    margin-right: 8px;
+    qproperty-alignment: AlignVCenter;
+}
 
 /* ============================================================
    6. TEXT INPUTS — QLineEdit, QPlainTextEdit, QTextEdit
@@ -559,3 +586,4 @@ AddRecipePage QLabel#label_ImagePreview {
     border-radius: 12px;
     color: #e0cfb3;
 }
+

@@ -109,7 +109,7 @@
      <height>51</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_Tags" stretch="0,0,0,0">
+   <layout class="QHBoxLayout" name="horizontalLayout_Tags" stretch="0,0,0,0,0">
     <property name="spacing">
      <number>6</number>
     </property>
@@ -151,6 +151,16 @@
       </property>
       <property name="text">
        <string>[difficulty]</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_rating">
+      <property name="text">
+       <string>[rating]</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>

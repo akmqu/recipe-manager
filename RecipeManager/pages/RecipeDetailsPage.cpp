@@ -53,8 +53,8 @@ void RecipeDetailsPage::loadRecipe(const Recipe &recipe)
     ui->label_MetaDifficulty->style()->unpolish(ui->label_MetaDifficulty);
     ui->label_MetaDifficulty->style()->polish(ui->label_MetaDifficulty);
 
-    QString prepStr = recipe.prepTime > 0 ? QString("%1 min").arg(recipe.prepTime) : "—";
-    QString cookStr = recipe.cookTime > 0 ? QString("%1 min").arg(recipe.cookTime) : "—";
+    QString prepStr = recipe.prepTime > 0 ? QString("%1 min").arg(recipe.prepTime) : "Brak";
+    QString cookStr = recipe.cookTime > 0 ? QString("%1 min").arg(recipe.cookTime) : "Brak";
     
     ui->label_MetaPrepTime->setText(prepStr);
     
@@ -64,6 +64,22 @@ void RecipeDetailsPage::loadRecipe(const Recipe &recipe)
     QString notes = recipe.notes;
     ui->textBrowser_Ingredients->setPlainText(ingredients.replace("\\n", "\n"));
     ui->textBrowser_Notes->setPlainText(notes.replace("\\n", "\n"));
+
+    QString starsText;
+    bool hasRating = (recipe.rating > 0); 
+
+    if (!hasRating) {
+        starsText = QStringLiteral("Brak");
+    } else {
+        for (int i = 0; i < recipe.rating; ++i) {
+            starsText += QStringLiteral("★");
+        }
+    }
+    ui->label_MetaRating->setText(starsText);
+
+    ui->label_MetaRating->setProperty("hasRating", hasRating);
+    ui->label_MetaRating->style()->unpolish(ui->label_MetaRating);
+    ui->label_MetaRating->style()->polish(ui->label_MetaRating);
 
     updateHeroImage();
 }

@@ -217,7 +217,7 @@ Recipe DatabaseManager::getRecipeById(int id)
 
 bool DatabaseManager::initSchema()
 {
-    QFile file(":/schemas/schema.sql"); // Odczyt z zasobów
+    QFile file(":/schemas/schema.sql"); 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning() << "Nie udało się otworzyć pliku schematu!";
         return false;
