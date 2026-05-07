@@ -14,6 +14,7 @@ public:
 
     bool connect();
     bool isConnected() const;
+    
     QString lastError() const;
 
     /** New recipe: sets recipe.id from DB on success. */
@@ -29,6 +30,8 @@ public:
 
 private:
     DatabaseManager() = default;
+    
+    bool initSchema();
 
     void mapRecipeRow(const QSqlQuery &query, Recipe &r) const;
 

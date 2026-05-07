@@ -70,24 +70,27 @@ void RecipeDetailsPage::loadRecipe(const Recipe &recipe)
 
 void RecipeDetailsPage::updateHeroImage()
 {
-    if (m_heroImagePath.isEmpty() || !QFile::exists(m_heroImagePath)) {
-        ui->label_DetailImage->clear();
-        ui->label_DetailImage->setText(QStringLiteral("Brak zdjęcia"));
-        return;
+    bool hasValidImg = !m_heroImagePath.isEmpty() && QFile::exists(m_heroImagePath);
+    QPixmap pm;
+    if (hasValidImg) {
+        pm.load(m_heroImagePath);
+        if (pm.isNull()) hasValidImg = false;
     }
 
-    QPixmap pm(m_heroImagePath);
-    if (pm.isNull()) {
+    ui->label_DetailImage->setProperty("hasImg", hasValidImg);
+    ui->label_DetailImage->style()->unpolish(ui->label_DetailImage);
+    ui->label_DetailImage->style()->polish(ui->label_DetailImage);
+
+    if (!hasValidImg) {
         ui->label_DetailImage->clear();
-        ui->label_DetailImage->setText(QStringLiteral("Brak podglądu"));
+        ui->label_DetailImage->setText(m_heroImagePath.isEmpty() ? QStringLiteral("Brak zdjęcia") : QStringLiteral("Brak podglądu"));
         return;
     }
 
     ui->label_DetailImage->setText({});
     QSize box = ui->label_DetailImage->size();
     if (box.width() < 80 || box.height() < 80)
-        box = QSize(ui->label_DetailImage->minimumWidth(),
-                    ui->label_DetailImage->minimumHeight());
+        box = QSize(ui->label_DetailImage->minimumWidth(), ui->label_DetailImage->minimumHeight());
 
     ui->label_DetailImage->setPixmap(
         RecipeImageStorage::coverRoundPixmap(pm, box, kHeroCornerRadius));

@@ -323,7 +323,7 @@
          <item row="6" column="1">
           <widget class="QLabel" name="label_Notes">
            <property name="text">
-            <string>INSTRUKCJE / NOTATKI</string>
+            <string>INSTRUKCJE &amp; NOTATKI</string>
            </property>
           </widget>
          </item>

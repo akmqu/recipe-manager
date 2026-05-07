@@ -57,8 +57,10 @@ void AddRecipePage::loadForEdit(const Recipe &recipe)
     ui->lineEdit_Name->setText(recipe.name);
     ui->lineEdit_PrepTime->setText(QString::number(recipe.prepTime));
     ui->lineEdit_CookTime->setText(QString::number(recipe.cookTime));
-    ui->plainTextEdit_Ingredients->setPlainText(recipe.ingredients);
-    ui->plainTextEdit_Notes->setPlainText(recipe.notes);
+    QString ingredients = recipe.ingredients;
+    QString notes = recipe.notes;
+    ui->plainTextEdit_Ingredients->setPlainText(ingredients.replace("\\n", "\n"));
+    ui->plainTextEdit_Notes->setPlainText(notes.replace("\\n", "\n"));
 
     const int catIdx = ui->comboBox_Category->findText(recipe.category);
     if (catIdx >= 0)

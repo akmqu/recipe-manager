@@ -232,14 +232,14 @@
           <widget class="QLabel" name="label_DetailImage">
            <property name="minimumSize">
             <size>
-             <width>360</width>
-             <height>220</height>
+             <width>300</width>
+             <height>200</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>360</width>
-             <height>320</height>
+             <width>300</width>
+             <height>200</height>
             </size>
            </property>
            <property name="text">
@@ -259,11 +259,11 @@
             <enum>Qt::Horizontal</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Maximum</enum>
+            <enum>QSizePolicy::Fixed</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
-             <width>40</width>
+             <width>10</width>
              <height>20</height>
             </size>
            </property>
@@ -355,7 +355,7 @@
             <enum>Qt::Horizontal</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Minimum</enum>
+            <enum>QSizePolicy::Expanding</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>

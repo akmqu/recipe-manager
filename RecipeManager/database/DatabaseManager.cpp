@@ -1,11 +1,12 @@
 #include "DatabaseManager.h"
 #include <QDebug>
 #include <QVariant>
+#include <QFile>
 
 namespace {
 constexpr auto kSelectFields =
     "SELECT recipe_id, name, prep_time, cook_time, "
-    "ingredients, notes, category, difficulty, is_favorite, image_path "
+    "ingredients, notes, category, difficulty, is_favorite, image_path, rating "
     "FROM recipe";
 }
 
@@ -22,6 +23,7 @@ void DatabaseManager::mapRecipeRow(const QSqlQuery &query, Recipe &r) const
     r.difficulty = query.value(7).toString();
     r.isFavorite = query.value(8).toBool();
     r.imagePath = query.value(9).toString();
+    r.rating = query.value(10).toInt();
 }
 
 
@@ -45,7 +47,7 @@ bool DatabaseManager::connect()
         m_lastError = m_db.lastError().text();
         return false;
     }
-    return true;
+    return initSchema();
 }
 
 bool DatabaseManager::isConnected() const
@@ -64,8 +66,8 @@ bool DatabaseManager::addRecipe(Recipe &recipe)
     query.prepare(
         QStringLiteral(
             "INSERT INTO recipe (name, prep_time, cook_time, ingredients, notes, category, "
-            "difficulty, is_favorite, image_path) "
-            "VALUES (:name, :prep, :cook, :ingr, :notes, :cat, :diff, :fav, :img) "
+            "difficulty, is_favorite, image_path, rating) "
+            "VALUES (:name, :prep, :cook, :ingr, :notes, :cat, :diff, :fav, :img, :rating) "
             "RETURNING recipe_id"));
     query.bindValue(QStringLiteral(":name"), recipe.name);
     query.bindValue(QStringLiteral(":prep"), recipe.prepTime);
@@ -78,6 +80,7 @@ bool DatabaseManager::addRecipe(Recipe &recipe)
     query.bindValue(QStringLiteral(":img"), recipe.imagePath.isEmpty()
         ? QVariant(QVariant::String)
         : recipe.imagePath);
+    query.bindValue(QStringLiteral(":rating"), recipe.rating);
 
     if (!query.exec()) {
         m_lastError = query.lastError().text();
@@ -98,7 +101,7 @@ bool DatabaseManager::updateRecipe(const Recipe &recipe)
         QStringLiteral(
             "UPDATE recipe SET name=:name, prep_time=:prep, cook_time=:cook, "
             "ingredients=:ingr, notes=:notes, category=:cat, difficulty=:diff, "
-            "is_favorite=:fav, image_path=:img WHERE recipe_id=:id"));
+            "is_favorite=:fav, image_path=:img, rating=:rating WHERE recipe_id=:id"));
     query.bindValue(QStringLiteral(":name"), recipe.name);
     query.bindValue(QStringLiteral(":prep"), recipe.prepTime);
     query.bindValue(QStringLiteral(":cook"), recipe.cookTime);
@@ -110,6 +113,7 @@ bool DatabaseManager::updateRecipe(const Recipe &recipe)
     query.bindValue(QStringLiteral(":img"), recipe.imagePath.isEmpty()
         ? QVariant(QVariant::String)
         : recipe.imagePath);
+    query.bindValue(QStringLiteral(":rating"), recipe.rating);
     query.bindValue(QStringLiteral(":id"), recipe.id);
 
     if (!query.exec()) {
@@ -209,4 +213,24 @@ Recipe DatabaseManager::getRecipeById(int id)
     if (query.next())
         mapRecipeRow(query, r);
     return r;
+}
+
+bool DatabaseManager::initSchema()
+{
+    QFile file(":/schemas/schema.sql"); // Odczyt z zasobów
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qWarning() << "Nie udało się otworzyć pliku schematu!";
+        return false;
+    }
+
+    QTextStream in(&file);
+    QString sql = in.readAll();
+    file.close();
+
+    QSqlQuery query;
+    if (!query.exec(sql)) {
+        qWarning() << "Błąd wykonania schematu:" << query.lastError().text();
+        return false;
+    }
+    return true;
 }

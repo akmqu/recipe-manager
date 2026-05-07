@@ -539,7 +539,12 @@ RecipeDetailsPage QTextBrowser#textBrowser_Meta {
 RecipeDetailsPage QLabel#label_DetailImage {
     background-color: #f0e5c7;
     border-radius: 16px;
-    color: #e0cfb3;
+    color: #e0cfb3; 
+}
+
+RecipeDetailsPage QLabel#label_DetailImage[hasImg="true"] {
+    background: transparent;
+    border: none;
 }
 
 RecipeDetailsPage QTextBrowser#textBrowser_Ingredients,
