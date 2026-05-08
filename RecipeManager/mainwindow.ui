@@ -87,7 +87,7 @@
           <item>
            <widget class="QLabel" name="label_BrandName">
             <property name="text">
-             <string>Saveur</string>
+             <string>♨️ SAVEUR</string>
             </property>
            </widget>
           </item>
