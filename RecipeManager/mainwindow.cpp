@@ -86,6 +86,7 @@ void MainWindow::setupNavigation()
             showPage(m_addRecipePage, kMenuAddRecipe);
             break;
         case kMenuStatistics:
+            m_statisticsPage->loadStatistics();
             showPage(m_statisticsPage, kMenuStatistics);
             break;
         default:
