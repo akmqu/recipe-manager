@@ -18,5 +18,11 @@ CREATE TABLE IF NOT EXISTS recipe (
     difficulty  VARCHAR(255) DEFAULT 'default',
     is_favorite BOOLEAN NOT NULL DEFAULT false,
     image_path  TEXT,
-    rating      INTEGER DEFAULT 0  
+    rating      INTEGER DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS shopping_list (
+    item_id   SERIAL PRIMARY KEY,
+    name      VARCHAR(255) NOT NULL,
+    is_bought BOOLEAN NOT NULL DEFAULT false
 );

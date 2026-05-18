@@ -6,6 +6,8 @@
 #include <QSqlError>
 #include <QList>
 #include "models/Recipe.h"
+#include "models/ShoppingItem.h"
+
 
 class DatabaseManager
 {
@@ -27,6 +29,15 @@ public:
     QList<Recipe> getAllRecipes();
     QList<Recipe> getFavorites();
     Recipe getRecipeById(int id);
+
+        // ── Shopping list ─────────────────────────
+    /** Inserts a new item; sets item.id on success. */
+    bool addShoppingItem(ShoppingItem &item);
+    bool setShoppingItemBought(int id, bool bought);
+    bool deleteShoppingItem(int id);
+    bool deleteBoughtShoppingItems();
+    QList<ShoppingItem> getAllShoppingItems();
+
 
 private:
     DatabaseManager() = default;

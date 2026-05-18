@@ -584,3 +584,73 @@ AddRecipePage QLabel#label_ImagePreview {
     color: #FDC707;
 }
 
+
+
+
+
+/* ============================================================
+   SHOPPING LIST PAGE
+   ============================================================ */
+
+ShoppingListPage {
+    background-color: #fcf5ef;
+}
+
+ShoppingListPage QLabel#label_Title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #4E070C;
+    letter-spacing: 0.2px;
+}
+
+ShoppingListPage QLabel#label_Count {
+    color: #9b755f;
+    font-size: 13px;
+    background: transparent;
+}
+
+ShoppingListPage QLabel#label_BoughtTitle {
+    font-size: 11px;
+    font-weight: bold;
+    color: #4E070C;
+    letter-spacing: 0.6px;
+    background: transparent;
+}
+
+ShoppingListPage QPushButton#pushButton_DeleteBought {
+    background-color: #FDEEAB;
+    color: #4E070C;
+    border: 1.5px solid #FDEEAB;
+    border-radius: 18px;
+    padding: 9px 22px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+ShoppingListPage QPushButton#pushButton_DeleteBought:hover {
+    background-color: #FDC707;
+    border: 1.5px solid #FDC707;
+    color: #4E070C;
+}
+
+ShoppingListPage QPushButton#pushButton_DeleteBought:pressed {
+    background-color: #FDC707;
+    border: 1.5px solid #FDC707;
+}
+
+ShoppingListPage QWidget#widget_InputContainer {
+    background: transparent;
+}
+
+ShoppingListPage QCheckBox {
+    color: #4E070C;
+    font-size: 13px;
+    padding: 4px 0px;
+}
+
+ShoppingListPage QFrame#line {
+    border: none;
+    border-top: 1.5px solid #FDC707;
+    background: transparent;
+    max-height: 2px;
+}

@@ -234,3 +234,69 @@ bool DatabaseManager::initSchema()
     }
     return true;
 }
+
+
+bool DatabaseManager::addShoppingItem(ShoppingItem &item)
+{
+    QSqlQuery query;
+    query.prepare(QStringLiteral(
+        "INSERT INTO shopping_list (name, is_bought) "
+        "VALUES (:name, :bought) RETURNING item_id"));
+    query.bindValue(QStringLiteral(":name"),   item.name);
+    query.bindValue(QStringLiteral(":bought"), item.isBought);
+ 
+    if (!query.exec()) { m_lastError = query.lastError().text(); return false; }
+    if (query.next())  { item.id = query.value(0).toInt();       return true;  }
+ 
+    m_lastError = QStringLiteral("RETURNING item_id failed");
+    return false;
+}
+ 
+bool DatabaseManager::setShoppingItemBought(int id, bool bought)
+{
+    QSqlQuery query;
+    query.prepare(QStringLiteral(
+        "UPDATE shopping_list SET is_bought=:bought WHERE item_id=:id"));
+    query.bindValue(QStringLiteral(":bought"), bought);
+    query.bindValue(QStringLiteral(":id"),     id);
+    if (!query.exec()) { m_lastError = query.lastError().text(); return false; }
+    return true;
+}
+ 
+bool DatabaseManager::deleteShoppingItem(int id)
+{
+    QSqlQuery query;
+    query.prepare(QStringLiteral("DELETE FROM shopping_list WHERE item_id=:id"));
+    query.bindValue(QStringLiteral(":id"), id);
+    if (!query.exec()) { m_lastError = query.lastError().text(); return false; }
+    return true;
+}
+ 
+bool DatabaseManager::deleteBoughtShoppingItems()
+{
+    QSqlQuery query;
+    if (!query.exec(QStringLiteral("DELETE FROM shopping_list WHERE is_bought = true"))) {
+        m_lastError = query.lastError().text();
+        return false;
+    }
+    return true;
+}
+ 
+QList<ShoppingItem> DatabaseManager::getAllShoppingItems()
+{
+    QList<ShoppingItem> list;
+    QSqlQuery query;
+    if (!query.exec(QStringLiteral(
+            "SELECT item_id, name, is_bought FROM shopping_list ORDER BY item_id ASC"))) {
+        m_lastError = query.lastError().text();
+        return list;
+    }
+    while (query.next()) {
+        ShoppingItem item;
+        item.id       = query.value(0).toInt();
+        item.name     = query.value(1).toString();
+        item.isBought = query.value(2).toBool();
+        list.append(item);
+    }
+    return list;
+}
