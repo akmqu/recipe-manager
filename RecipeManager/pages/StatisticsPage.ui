@@ -15,27 +15,60 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_Root">
    <property name="spacing">
-    <number>20</number>
+    <number>0</number>
    </property>
    <property name="leftMargin">
-    <number>28</number>
+    <number>0</number>
    </property>
    <property name="topMargin">
-    <number>28</number>
+    <number>0</number>
    </property>
    <property name="rightMargin">
-    <number>28</number>
+    <number>0</number>
    </property>
    <property name="bottomMargin">
-    <number>28</number>
+    <number>0</number>
    </property>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_Header">
      <property name="spacing">
       <number>4</number>
      </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <property name="leftMargin">
+      <number>28</number>
+     </property>
+     <property name="topMargin">
+      <number>22</number>
+     </property>
+     <property name="rightMargin">
+      <number>28</number>
+     </property>
+     <property name="bottomMargin">
+      <number>18</number>
+     </property>
      <item>
       <widget class="QLabel" name="label_PageTitle">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>28</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>28</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="text">
         <string>Statystyki</string>
        </property>
@@ -43,8 +76,25 @@
      </item>
      <item>
       <widget class="QLabel" name="label_PageTitle2">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>Przegląd Twojej kolekcji przepisów</string>
+        <string>Krótkie podsumowanie Twoich przepisów</string>
        </property>
       </widget>
      </item>
@@ -52,18 +102,30 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout_Tiles">
+     <property name="leftMargin">
+      <number>28</number>
+     </property>
+     <property name="topMargin">
+      <number>20</number>
+     </property>
+     <property name="rightMargin">
+      <number>28</number>
+     </property>
+     <property name="bottomMargin">
+      <number>10</number>
+     </property>
      <property name="spacing">
       <number>16</number>
      </property>
-     <item row="0" column="0">
-      <widget class="QFrame" name="frame_TotalCount">
+     <item row="1" column="2">
+      <widget class="QFrame" name="frame_Longest">
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
        </property>
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <layout class="QVBoxLayout" name="vl_TotalCount">
+       <layout class="QVBoxLayout" name="vl_Longest">
         <property name="spacing">
          <number>6</number>
         </property>
@@ -80,98 +142,19 @@
          <number>16</number>
         </property>
         <item>
-         <widget class="QLabel" name="label_TotalCountTitle">
+         <widget class="QLabel" name="label_LongestTitle">
           <property name="text">
-           <string>Całkowita liczba przepisów</string>
+           <string>🕐 NAJDŁUŻSZY PRZEPIS</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_TotalCountValue">
+         <widget class="QLabel" name="label_LongestRecipe">
           <property name="text">
-           <string>0</string>
+           <string>Najdłuższy: —</string>
           </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QFrame" name="frame_FavoriteCount">
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <layout class="QVBoxLayout" name="vl_FavoriteCount">
-        <property name="spacing">
-         <number>6</number>
-        </property>
-        <property name="leftMargin">
-         <number>18</number>
-        </property>
-        <property name="topMargin">
-         <number>16</number>
-        </property>
-        <property name="rightMargin">
-         <number>18</number>
-        </property>
-        <property name="bottomMargin">
-         <number>16</number>
-        </property>
-        <item>
-         <widget class="QLabel" name="label_FavoriteCountTitle">
-          <property name="text">
-           <string>Ulubione przepisy</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_FavoriteCountValue">
-          <property name="text">
-           <string>0</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QFrame" name="frame_AverageRating">
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <layout class="QVBoxLayout" name="vl_AverageRating">
-        <property name="spacing">
-         <number>6</number>
-        </property>
-        <property name="leftMargin">
-         <number>18</number>
-        </property>
-        <property name="topMargin">
-         <number>16</number>
-        </property>
-        <property name="rightMargin">
-         <number>18</number>
-        </property>
-        <property name="bottomMargin">
-         <number>16</number>
-        </property>
-        <item>
-         <widget class="QLabel" name="label_AverageRatingTitle">
-          <property name="text">
-           <string>Średnia ocena</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_AverageRatingValue">
-          <property name="text">
-           <string>0.0 ★</string>
+          <property name="wordWrap">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -205,7 +188,7 @@
         <item>
          <widget class="QLabel" name="label_AverageTimeTitle">
           <property name="text">
-           <string>Średni całkowity czas</string>
+           <string>ŚREDNI CAŁKOWITY CZAS</string>
           </property>
          </widget>
         </item>
@@ -213,6 +196,47 @@
          <widget class="QLabel" name="label_AverageTimeValue">
           <property name="text">
            <string>0 min</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QFrame" name="frame_TotalCount">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <layout class="QVBoxLayout" name="vl_TotalCount">
+        <property name="spacing">
+         <number>6</number>
+        </property>
+        <property name="leftMargin">
+         <number>18</number>
+        </property>
+        <property name="topMargin">
+         <number>16</number>
+        </property>
+        <property name="rightMargin">
+         <number>18</number>
+        </property>
+        <property name="bottomMargin">
+         <number>16</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="label_TotalCountTitle">
+          <property name="text">
+           <string>CAŁKOWITA LICZBA PRZEPISÓW</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_TotalCountValue">
+          <property name="text">
+           <string>0</string>
           </property>
          </widget>
         </item>
@@ -246,7 +270,7 @@
         <item>
          <widget class="QLabel" name="label_FastestTitle">
           <property name="text">
-           <string>⚡ Najszybszy przepis</string>
+           <string>⚡ NAJSZYBSZY PRZEPIS</string>
           </property>
          </widget>
         </item>
@@ -263,15 +287,15 @@
        </layout>
       </widget>
      </item>
-     <item row="1" column="2">
-      <widget class="QFrame" name="frame_Longest">
+     <item row="0" column="1">
+      <widget class="QFrame" name="frame_FavoriteCount">
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
        </property>
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <layout class="QVBoxLayout" name="vl_Longest">
+       <layout class="QVBoxLayout" name="vl_FavoriteCount">
         <property name="spacing">
          <number>6</number>
         </property>
@@ -288,19 +312,16 @@
          <number>16</number>
         </property>
         <item>
-         <widget class="QLabel" name="label_LongestTitle">
+         <widget class="QLabel" name="label_FavoriteCountTitle">
           <property name="text">
-           <string>🕐 Najdłuższy przepis</string>
+           <string>ULUBIONE PRZEPISY</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_LongestRecipe">
+         <widget class="QLabel" name="label_FavoriteCountValue">
           <property name="text">
-           <string>Najdłuższy: —</string>
-          </property>
-          <property name="wordWrap">
-           <bool>true</bool>
+           <string>0</string>
           </property>
          </widget>
         </item>
@@ -334,7 +355,7 @@
         <item>
          <widget class="QLabel" name="label_LatestTitle">
           <property name="text">
-           <string>🆕 Ostatnio dodany</string>
+           <string>🍽️ OSTATNIO DODANY</string>
           </property>
          </widget>
         </item>
@@ -351,80 +372,227 @@
        </layout>
       </widget>
      </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_Charts">
-     <property name="spacing">
-      <number>16</number>
-     </property>
-     <item>
-      <widget class="QFrame" name="frame_CategoryChart">
+     <item row="0" column="2">
+      <widget class="QFrame" name="frame_AverageRating">
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
        </property>
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <layout class="QVBoxLayout" name="vl_CategoryChart">
+       <layout class="QVBoxLayout" name="vl_AverageRating">
+        <property name="spacing">
+         <number>6</number>
+        </property>
         <property name="leftMargin">
-         <number>0</number>
+         <number>18</number>
         </property>
         <property name="topMargin">
-         <number>0</number>
+         <number>16</number>
         </property>
         <property name="rightMargin">
-         <number>0</number>
+         <number>18</number>
         </property>
         <property name="bottomMargin">
-         <number>0</number>
+         <number>16</number>
         </property>
         <item>
-         <widget class="QWidget" name="widget_CategoryChartPlaceholder" native="true">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>280</height>
-           </size>
+         <widget class="QLabel" name="label_AverageRatingTitle">
+          <property name="text">
+           <string>ŚREDNIA OCENA</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_AverageRatingValue">
+          <property name="text">
+           <string>0.0 ★</string>
           </property>
          </widget>
         </item>
        </layout>
       </widget>
      </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="leftMargin">
+      <number>28</number>
+     </property>
+     <property name="topMargin">
+      <number>10</number>
+     </property>
+     <property name="rightMargin">
+      <number>28</number>
+     </property>
+     <property name="bottomMargin">
+      <number>20</number>
+     </property>
      <item>
-      <widget class="QFrame" name="frame_DifficultyChart">
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <property name="spacing">
+        <number>52</number>
        </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
+       <property name="leftMargin">
+        <number>18</number>
        </property>
-       <layout class="QVBoxLayout" name="vl_DifficultyChart">
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-        <item>
-         <widget class="QWidget" name="widget_DifficultyChartPlaceholder" native="true">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>280</height>
-           </size>
+       <property name="topMargin">
+        <number>16</number>
+       </property>
+       <property name="rightMargin">
+        <number>18</number>
+       </property>
+       <property name="bottomMargin">
+        <number>16</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="label_CategoryStatsTitle">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>KATEGORIE:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_DifficultyStatsTitle">
+         <property name="font">
+          <font>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>TRUDNOŚĆ:</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_Stats">
+       <property name="spacing">
+        <number>16</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="frame_CategoryStats">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="vl_CategoryStats">
+          <property name="leftMargin">
+           <number>18</number>
           </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
+          <property name="topMargin">
+           <number>16</number>
+          </property>
+          <property name="rightMargin">
+           <number>18</number>
+          </property>
+          <property name="bottomMargin">
+           <number>16</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_CategoryStats">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>240</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Brak danych</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_DifficultyStats">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="vl_DifficultyStats">
+          <property name="leftMargin">
+           <number>18</number>
+          </property>
+          <property name="topMargin">
+           <number>16</number>
+          </property>
+          <property name="rightMargin">
+           <number>18</number>
+          </property>
+          <property name="bottomMargin">
+           <number>16</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_DifficultyStats">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>240</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Brak danych</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>

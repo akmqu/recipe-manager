@@ -1,5 +1,5 @@
 /* ============================================================
-   SAVEUR — Recipe Management App  •  styles.qss
+   SAVEUR 
    ============================================================ */
 
 /* ============================================================
@@ -430,7 +430,7 @@ QLineEdit#lineEdit_Search:focus { border: 1.5px solid #FDC707; background-color:
 
 
 /* ============================================================
-   7. LABELS — visual hierarchy
+   7. LABELS 
    ============================================================ */
 
 QLabel { color: #4E070C;  background-color: transparent; font-size: 13px; }
@@ -674,21 +674,19 @@ ShoppingListPage QFrame#line {
 
 
 /* ============================================================
-   STATISTICS PAGE  — append these rules to styles.qss
+   STATISTICS PAGE  
    ============================================================ */
 
 StatisticsPage {
     background-color: #fcf5ef;
 }
 
-/* ── Tile frames ─────────────────────────────────────────── */
 
 StatisticsPage QFrame {
     background-color: #ffffff;
     border-radius: 14px;
 }
 
-/* ── Tile title labels (small caps header inside each tile) ─ */
 
 StatisticsPage QLabel#label_TotalCountTitle,
 StatisticsPage QLabel#label_FavoriteCountTitle,
@@ -696,15 +694,17 @@ StatisticsPage QLabel#label_AverageRatingTitle,
 StatisticsPage QLabel#label_AverageTimeTitle,
 StatisticsPage QLabel#label_FastestTitle,
 StatisticsPage QLabel#label_LongestTitle,
-StatisticsPage QLabel#label_LatestTitle {
-    font-size: 11px;
+StatisticsPage QLabel#label_LatestTitle,
+StatisticsPage QLabel#label_DifficultyStatsTitle,
+StatisticsPage QLabel#label_CategoryStatsTitle
+ {
+    font-size: 12px;
     font-weight: bold;
     color: #4E070C;
     letter-spacing: 0.6px;
     background: transparent;
 }
 
-/* ── Big counter values (row 0 tiles) ───────────────────── */
 
 StatisticsPage QLabel#label_TotalCountValue,
 StatisticsPage QLabel#label_FavoriteCountValue,
@@ -716,12 +716,11 @@ StatisticsPage QLabel#label_AverageTimeValue {
     background: transparent;
 }
 
-/* ── Detail text (row 1 tiles) ───────────────────────────── */
 
 StatisticsPage QLabel#label_FastestRecipe,
 StatisticsPage QLabel#label_LongestRecipe,
 StatisticsPage QLabel#label_LatestRecipe {
-    font-size: 13px;
+    font-size: 12px;
     color: #FF670E;
     font-weight: 600;
     background: transparent;

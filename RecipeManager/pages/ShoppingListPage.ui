@@ -21,24 +21,36 @@
     <number>28</number>
    </property>
    <property name="topMargin">
-    <number>28</number>
+    <number>22</number>
    </property>
    <property name="rightMargin">
     <number>28</number>
    </property>
    <property name="bottomMargin">
-    <number>28</number>
+    <number>18</number>
    </property>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_Header">
      <property name="spacing">
-      <number>6</number>
+      <number>4</number>
      </property>
      <item>
       <widget class="QLabel" name="label_Title">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>28</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>28</height>
+        </size>
+       </property>
        <property name="font">
         <font>
-         <pointsize>20</pointsize>
+         <pointsize>16</pointsize>
          <bold>true</bold>
         </font>
        </property>
@@ -114,7 +126,7 @@
         <x>0</x>
         <y>0</y>
         <width>944</width>
-        <height>525</height>
+        <height>546</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_Scroll">
@@ -166,6 +178,7 @@
            <widget class="QLabel" name="label_BoughtTitle">
             <property name="font">
              <font>
+              <pointsize>10</pointsize>
               <bold>true</bold>
              </font>
             </property>
@@ -194,7 +207,13 @@
            <widget class="QPushButton" name="pushButton_DeleteBought">
             <property name="minimumSize">
              <size>
-              <width>100</width>
+              <width>120</width>
+              <height>45</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
               <height>45</height>
              </size>
             </property>

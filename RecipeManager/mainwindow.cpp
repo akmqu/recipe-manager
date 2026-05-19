@@ -40,9 +40,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-// ─────────────────────────────────────────
-//  Private setup
-// ─────────────────────────────────────────
+
 
 void MainWindow::setupPages()
 {
