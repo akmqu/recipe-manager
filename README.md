@@ -57,6 +57,8 @@ It helps users organize recipes, plan meals, manage shopping items, and view use
 |---|---|
 | ![Favorites](RecipeManager/screenshots/fav.png) | ![Statistics](RecipeManager/screenshots/statistics.png) |
 
+---
+
 ## 🛠 Tech Stack
 
 - **C++**
@@ -87,6 +89,8 @@ graph TD
     classDef default fill:#1e1e1e,stroke:#333,stroke-width:2px,color:#fff;
     classDef database fill:#00599c,stroke:#000,stroke-width:2px,color:#fff;
     class DB database;
+```
+
 ---
 
 ## 🚀 Getting Started
@@ -147,7 +151,4 @@ cmake --build build
 ```bash
 ./build/RecipeManager
 ```
-
 ---
-
-
