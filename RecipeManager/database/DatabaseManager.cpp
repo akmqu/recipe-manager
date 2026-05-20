@@ -181,23 +181,6 @@ QList<Recipe> DatabaseManager::getAllRecipes()
     return list;
 }
 
-QList<Recipe> DatabaseManager::getFavorites()
-{
-    QList<Recipe> list;
-    QSqlQuery query;
-    if (!query.exec(QString(kSelectFields) + QStringLiteral(" WHERE is_favorite = true ORDER BY recipe_id DESC"))) {
-        m_lastError = query.lastError().text();
-        return list;
-    }
-
-    while (query.next()) {
-        Recipe r;
-        mapRecipeRow(query, r);
-        list.append(r);
-    }
-    return list;
-}
-
 Recipe DatabaseManager::getRecipeById(int id)
 {
     Recipe r;
@@ -259,15 +242,6 @@ bool DatabaseManager::setShoppingItemBought(int id, bool bought)
         "UPDATE shopping_list SET is_bought=:bought WHERE item_id=:id"));
     query.bindValue(QStringLiteral(":bought"), bought);
     query.bindValue(QStringLiteral(":id"),     id);
-    if (!query.exec()) { m_lastError = query.lastError().text(); return false; }
-    return true;
-}
- 
-bool DatabaseManager::deleteShoppingItem(int id)
-{
-    QSqlQuery query;
-    query.prepare(QStringLiteral("DELETE FROM shopping_list WHERE item_id=:id"));
-    query.bindValue(QStringLiteral(":id"), id);
     if (!query.exec()) { m_lastError = query.lastError().text(); return false; }
     return true;
 }

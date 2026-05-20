@@ -1,6 +1,5 @@
 #include "recipecard.h"
 #include "ui_recipecard.h"
-#include "models/Recipe.h"
 #include "utils/RecipeImageStorage.h"
 #include <QFile>
 #include <QPixmap>

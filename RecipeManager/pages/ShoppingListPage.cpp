@@ -74,8 +74,14 @@ void ShoppingListPage::on_pushButton_DeleteBought_clicked()
 void ShoppingListPage::onItemToggled(QCheckBox *cb, bool checked)
 {
     const int dbId = m_itemIds.value(cb, -1);
-    if (dbId > 0)
-        DatabaseManager::instance().setShoppingItemBought(dbId, checked);
+    if (dbId > 0 && !DatabaseManager::instance().setShoppingItemBought(dbId, checked)) {
+        qWarning() << "setShoppingItemBought failed:"
+                   << DatabaseManager::instance().lastError();
+
+        QSignalBlocker blocker(cb);
+        cb->setChecked(!checked);
+        return;
+    }
 
     QFont f = cb->font();
     f.setStrikeOut(checked);
@@ -117,4 +123,3 @@ void ShoppingListPage::addCheckbox(int dbId, const QString &name, bool bought)
         ui->verticalLayout_ToBuy->addWidget(cb);
 
 }
-

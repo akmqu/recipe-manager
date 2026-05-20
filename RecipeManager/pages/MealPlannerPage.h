@@ -3,6 +3,7 @@
 
 #include <QVector>
 #include <QWidget>
+#include <QMap>
 
 class QComboBox;
 

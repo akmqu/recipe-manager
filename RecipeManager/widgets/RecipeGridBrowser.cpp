@@ -2,7 +2,6 @@
 #include "ui_recipegridbrowser.h"
 #include <QComboBox>
 #include <QResizeEvent>
-#include <QDebug>
 #include <QStyledItemDelegate>
 #include <algorithm>
 
@@ -31,7 +30,8 @@ RecipeGridBrowser::RecipeGridBrowser(QWidget *parent)
     ui->setupUi(this);
 
     m_gridLayout = qobject_cast<QGridLayout *>(ui->scrollAreaWidgetContents->layout());
-    m_gridLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+    if (m_gridLayout)
+        m_gridLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
 
     m_resizeTimer = new QTimer(this);
     m_resizeTimer->setSingleShot(true);
@@ -86,18 +86,18 @@ void RecipeGridBrowser::filterByCategory(const QString &category)
 
 void RecipeGridBrowser::setupCategoryButtons()
 {
-    const QList<QPair<QPushButton *, QString>> buttons = {
-        { ui->pushButton_All, QStringLiteral("Wszystkie") },
-        { ui->pushButton_Breakfast, QStringLiteral("Śniadania") },
-        { ui->pushButton_Breakfast2, QStringLiteral("Obiady") },
-        { ui->pushButton_Deserts, QStringLiteral("Desery") },
-        { ui->pushButton_Evening, QStringLiteral("Kolacje") },
-        { ui->pushButton_Another, QStringLiteral("Inne") },
+    const QList<QPushButton *> buttons = {
+        ui->pushButton_All,
+        ui->pushButton_Breakfast,
+        ui->pushButton_Breakfast2,
+        ui->pushButton_Deserts,
+        ui->pushButton_Evening,
+        ui->pushButton_Another,
     };
 
-    for (auto &pair : buttons) {
-        connect(pair.first, &QPushButton::clicked,
-                this, [this, cat = pair.second] { filterByCategory(cat); });
+    for (QPushButton *button : buttons) {
+        connect(button, &QPushButton::clicked,
+                this, [this, button] { filterByCategory(button->text()); });
     }
 }
 
@@ -133,18 +133,6 @@ void RecipeGridBrowser::applyFilters()
 void RecipeGridBrowser::setupSortCombo()
 {
     ui->comboBox_Sort->setItemDelegate(new QStyledItemDelegate(this));
-    ui->comboBox_Sort->addItems({
-        QStringLiteral("Najnowsze"),
-        QStringLiteral("Najstarsze"),
-        QStringLiteral("Najszybsze"),
-        QStringLiteral("Najdłuższe"),
-        QStringLiteral("Nazwa A-Z"),
-        QStringLiteral("Nazwa Z-A"),
-        QStringLiteral("Trudność: łatwy -> trudny"),
-        QStringLiteral("Trudność: trudny -> łatwy"),
-        QStringLiteral("Ocena: rosnąco"),
-        QStringLiteral("Ocena: malejąco"),
-    });
 
     connect(ui->comboBox_Sort, QOverload<int>::of(&QComboBox::currentIndexChanged),
             this, [this](int) { applyFilters(); });
@@ -202,6 +190,9 @@ int RecipeGridBrowser::calculateColumns() const
 
 void RecipeGridBrowser::loadCards(const QList<Recipe> &recipes)
 {
+    if (!m_gridLayout)
+        return;
+
     while (QLayoutItem *item = m_gridLayout->takeAt(0)) { //delete from layout  from first
         QWidget *w = item->widget();// get the widget stored inside the layout
         if (w != nullptr) {

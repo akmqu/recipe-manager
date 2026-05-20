@@ -29,7 +29,11 @@ bool isManagedPath(const QString &absolutePath)
     const QString root = QFileInfo(storageRoot()).canonicalFilePath();
     if (root.isEmpty() || clean.isEmpty())
         return false;
-    return clean.startsWith(root);//check if the start of path is root
+
+    const QString relativePath = QDir(root).relativeFilePath(clean);
+    return relativePath != QStringLiteral("..")
+        && !relativePath.startsWith(QStringLiteral("../"))
+        && !QDir::isAbsolutePath(relativePath);
 }
 
 //path from user -> copy to root folder -> return new path
@@ -48,12 +52,23 @@ QString importForRecipe(int recipeId, const QString &sourcePath)
 
     const QString ext = srcInfo.suffix().isEmpty() ? QStringLiteral("jpg") : srcInfo.suffix(); //check if file has .jpg/.png if not set jpg as default
     const QString destPath = storageRoot() + QStringLiteral("/recipe_%1.%2").arg(recipeId).arg(ext);
+    const QString tempPath = destPath + QStringLiteral(".tmp");
 
-    if (QFile::exists(destPath))//check if it is a file with the same name already
-        QFile::remove(destPath);
+    if (QFile::exists(tempPath))
+        QFile::remove(tempPath);
 
-    if (!QFile::copy(cleanSrc, destPath)) 
+    if (!QFile::copy(cleanSrc, tempPath))
         return {};
+
+    if (QFile::exists(destPath) && !QFile::remove(destPath)) {
+        QFile::remove(tempPath);
+        return {};
+    }
+
+    if (!QFile::rename(tempPath, destPath)) {
+        QFile::remove(tempPath);
+        return {};
+    }
 
     return QFileInfo(destPath).canonicalFilePath();
 }

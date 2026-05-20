@@ -6,6 +6,22 @@
 #include <QShowEvent>
 #include <QStyledItemDelegate>
 
+namespace {
+
+int nonNegativeIntOrZero(const QString &text)
+{
+    bool ok = false;
+    const int value = text.trimmed().toInt(&ok);
+    return (ok && value >= 0) ? value : 0;
+}
+
+int validRatingOrZero(int rating)
+{
+    return (rating >= 0 && rating <= 5) ? rating : 0;
+}
+
+} // namespace
+
 AddRecipePage::AddRecipePage(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::AddRecipePage)
@@ -64,7 +80,11 @@ void AddRecipePage::loadForEdit(const Recipe &recipe)
     QString notes = recipe.notes;
     ui->plainTextEdit_Ingredients->setPlainText(ingredients.replace("\\n", "\n"));
     ui->plainTextEdit_Notes->setPlainText(notes.replace("\\n", "\n"));
-    ui->comboBox_Rating->setCurrentIndex(recipe.rating);
+    const int rating = validRatingOrZero(recipe.rating);
+    if (rating < ui->comboBox_Rating->count())
+        ui->comboBox_Rating->setCurrentIndex(rating);
+    else
+        ui->comboBox_Rating->setCurrentIndex(0);
 
     const int catIdx = ui->comboBox_Category->findText(recipe.category);
     if (catIdx >= 0)
@@ -125,8 +145,8 @@ Recipe AddRecipePage::collectFormData() const
     Recipe r;
     r.id = m_editId;
     r.name = ui->lineEdit_Name->text().trimmed();
-    r.prepTime = ui->lineEdit_PrepTime->text().toInt();
-    r.cookTime = ui->lineEdit_CookTime->text().toInt();
+    r.prepTime = nonNegativeIntOrZero(ui->lineEdit_PrepTime->text());
+    r.cookTime = nonNegativeIntOrZero(ui->lineEdit_CookTime->text());
     r.ingredients = ui->plainTextEdit_Ingredients->toPlainText().trimmed();
     r.notes = ui->plainTextEdit_Notes->toPlainText().trimmed();
     r.category = ui->comboBox_Category->currentText();

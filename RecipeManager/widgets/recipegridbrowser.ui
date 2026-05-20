@@ -293,9 +293,56 @@
      </item>
      <item>
       <widget class="QComboBox" name="comboBox_Sort">
-       <property name="currentText">
-        <string notr="true"/>
-       </property>
+       <item>
+        <property name="text">
+         <string>Najnowsze</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Najstarsze</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Najszybsze</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Najdłuższe</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Nazwa A-Z</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Nazwa Z-A</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Trudność: łatwy -&gt; trudny</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Trudność: trudny -&gt; łatwy</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Ocena: rosnąco</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Ocena: malejąco</string>
+        </property>
+       </item>
       </widget>
      </item>
     </layout>

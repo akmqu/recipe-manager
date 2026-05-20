@@ -26,6 +26,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     if (!DatabaseManager::instance().connect()) {
         QMessageBox::critical(this, "Błąd bazy danych", DatabaseManager::instance().lastError());
+        ui->listWidget->setEnabled(false);
+        ui->stackedWidget->setEnabled(false);
+        return;
     }
 
     setupPages();
