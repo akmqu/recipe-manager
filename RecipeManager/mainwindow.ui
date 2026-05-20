@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Saveur — Recipe Manager</string>
+   <string>Saveur</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="maximumSize">
