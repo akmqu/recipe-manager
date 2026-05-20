@@ -49,7 +49,7 @@ QStackedWidget#stackedWidget {
 
 
 /* ============================================================
-   2. SIDEBAR 
+   2. SIDEBAR dbd0ba
    ============================================================ */
 
 QListWidget#listWidget {
@@ -59,7 +59,7 @@ QListWidget#listWidget {
     font-size: 14px;
     font-weight: bold;
     outline: none;
-    border-right: 1px solid #e3dbcc;
+    border-right: 1px solid #dbd0ba;
 }
 
 QListWidget::item {
@@ -76,8 +76,8 @@ QListWidget::item:hover:!selected {
 
 QListWidget::item:selected {
     background-color: #faf5ec;
-    color: #3d2817; 
-    border-left: 3px solid #3d2817;
+    color: #b8794a; 
+    border-left: 3px solid #b8794a;
     font-weight: bold;
     padding-left: 14px;
     outline: none;
@@ -131,7 +131,7 @@ QListWidget::item:disabled:selected {
 QPushButton {
     background-color: #ffffff;
     color: #3d2817;
-    border: 1.0px solid #e3dbcc; 
+    border: 1.0px solid #dbd0ba; 
     border-radius: 20px;
     padding: 8px 20px;
     font-size: 13px;
@@ -183,18 +183,20 @@ QPushButton#pushButton:pressed,
 QPushButton#pushButton_SelectImage:pressed { background-color: #a26a3f; border: 1.5px solid #a26a3f; }
 
 QPushButton#pushButton_Cancel,
+QPushButton#pushButton_DeleteBought,
 QPushButton#pushButton_Edit,
 QPushButton#pushButton_Back,
 QPushButton#pushButton_ClearImage {
     background-color: #ffffff;
     color: #3d2817; 
-    border: 1.0px solid #e3dbcc; 
+    border: 1.0px solid #dbd0ba; 
     border-radius: 18px;
     padding: 9px 22px;
     font-weight: 500;
 }
 
 QPushButton#pushButton_Cancel:hover,
+QPushButton#pushButton_DeleteBought:hover,
 QPushButton#pushButton_Edit:hover,
 QPushButton#pushButton_Back:hover,
 QPushButton#pushButton_ClearImage:hover {
@@ -204,6 +206,7 @@ QPushButton#pushButton_ClearImage:hover {
 }
 
 QPushButton#pushButton_Cancel:pressed,
+QPushButton#pushButton_DeleteBought:pressed,
 QPushButton#pushButton_Edit:pressed,
 QPushButton#pushButton_Back:pressed,
 QPushButton#pushButton_ClearImage:pressed { background-color: #b8794a; border: 1.5px solid #b8794a; }
@@ -224,7 +227,7 @@ QPushButton#pushButton_Another,
 QPushButton[class="filterChip"] {
     background-color: #ffffff;
     color: #3d2817; 
-    border: 1.0px solid #e3dbcc; 
+    border: 1.0px solid #dbd0ba; 
     border-radius: 16px;
     padding: 8px 20px;
     font-size: 13px;
@@ -242,7 +245,7 @@ QPushButton#pushButton_Another:hover,
 QPushButton[class="filterChip"]:hover {
     background-color: #faf5ec; 
     color: #3d2817; 
-    border: 1.0px solid #e3dbcc; 
+    border: 1.0px solid #dbd0ba; 
 }
 
 QPushButton#pushButton_All:pressed,
@@ -275,12 +278,12 @@ QPushButton[class="filterChip"]:checked {
 
 QFrame[class="recipeCard"], RecipeCard {
     background-color: #ffffff;
-    border: 1.0px solid #e3dbcc; 
+    border: 1.0px solid #dbd0ba; 
     border-radius: 14px;
 }
 
 QFrame[class="recipeCard"]:hover, RecipeCard:hover {
-    border: 1.5px solid #e3dbcc; 
+    border: 1.5px solid #dbd0ba; 
     background-color: #ffffff; 
 }
 
@@ -392,7 +395,7 @@ RecipeCard #label_time {
 
 QLineEdit, QPlainTextEdit, QTextEdit, QTextBrowser {
     background-color: #FFFFFF;
-    border: 1.0px solid #e3dbcc; 
+    border: 1.0px solid #dbd0ba; 
     border-radius: 15px;
     padding: 9px 14px;
     color: #3d2817; 
@@ -401,18 +404,18 @@ QLineEdit, QPlainTextEdit, QTextEdit, QTextBrowser {
     selection-color: #3d2817; 
 }
 
-QLineEdit:hover, QPlainTextEdit:hover, QTextEdit:hover, QTextBrowser:hover { border: 1.5px solid #e3dbcc; }
-QLineEdit:focus, QPlainTextEdit:focus, QTextEdit:focus { border: 1.5px solid #e3dbcc; background-color: #ffffff; outline: none; }
-QLineEdit:disabled, QPlainTextEdit:disabled { background-color: #faf5ec; color: #3d2817; border: 1.0px solid #e3dbcc; }
+QLineEdit:hover, QPlainTextEdit:hover, QTextEdit:hover, QTextBrowser:hover { border: 1.5px solid #dbd0ba; }
+QLineEdit:focus, QPlainTextEdit:focus, QTextEdit:focus { border: 1.5px solid #dbd0ba; background-color: #ffffff; outline: none; }
+QLineEdit:disabled, QPlainTextEdit:disabled { background-color: #faf5ec; color: #3d2817; border: 1.0px solid #dbd0ba; }
 
 QLineEdit#lineEdit_Search {
     border-radius: 20px;
     padding: 8px 16px 8px 16px; 
-    border: 1.0px solid #e3dbcc; 
+    border: 1.0px solid #dbd0ba; 
     background-color: #FFFFFF;
     font-size: 13px;
 }
-QLineEdit#lineEdit_Search:focus { border: 1.5px solid #e3dbcc; background-color: #ffffff; }
+QLineEdit#lineEdit_Search:focus { border: 1.5px solid #dbd0ba; background-color: #ffffff; }
 
 
 /* ============================================================
@@ -440,7 +443,7 @@ QLabel#label_DetailImage {
     border-radius: 14px;
     color: #3d2817; 
     font-size: 13px;
-    border: 1.0px solid #e3dbcc; 
+    border: 1.0px solid #dbd0ba; 
 }
 
 
@@ -485,15 +488,15 @@ QScrollBar:horizontal { height: 0px; background: transparent; }
 
 QComboBox {
     background-color: #FFFFFF;
-    border: 1.0px solid #e3dbcc; 
+    border: 1.0px solid #dbd0ba; 
     border-radius: 15px;
     padding: 8px 14px;
     color: #3d2817; 
     font-size: 13px;
 }
 
-QComboBox:hover { border: 1.5px solid #e3dbcc;  }
-QComboBox:focus { border: 1.5px solid #e3dbcc; background-color: #ffffff; }
+QComboBox:hover { border: 1.5px solid #dbd0ba;  }
+QComboBox:focus { border: 1.5px solid #dbd0ba; background-color: #ffffff; }
 
 QComboBox::drop-down {
     border: none;
@@ -523,7 +526,7 @@ QComboBox QAbstractItemView::item:selected { background-color: #faf5ec; color: #
 
 QStatusBar {
     background-color: #fcf5ef; 
-    border-top: 1.0px solid #e3dbcc; 
+    border-top: 1.0px solid #dbd0ba; 
     color: #3d2817; 
     font-size: 11px;
 }
@@ -533,7 +536,7 @@ QStatusBar::item { border: none; }
 QTextBrowser#textBrowser_Ingredients,
 QTextBrowser#textBrowser_Notes {
     background-color: #FFFFFF;
-    border: 1.0px solid #e3dbcc; 
+    border: 1.0px solid #dbd0ba; 
     border-radius: 15px;
     padding: 14px;
     color: #3d2817; 
@@ -565,7 +568,7 @@ RecipeDetailsPage QTextBrowser#textBrowser_Notes {
 
 AddRecipePage QLabel#label_ImagePreview {
     background-color: #ffffff;
-    border: 1.0px dashed #e3dbcc;
+    border: 1.0px dashed #dbd0ba;
     border-radius: 12px;
     color: #9b755f;
 }
@@ -599,7 +602,7 @@ ShoppingListPage QLabel#label_BoughtTitle {
 ShoppingListPage QPushButton#pushButton_DeleteBought {
     background-color: #ffffff;
     color: #3d2817;
-    border: 1.0px solid #e3dbcc;
+    border: 1.0px solid #dbd0ba;
     border-radius: 18px;
     padding: 9px 22px;
     font-size: 13px;
@@ -607,14 +610,15 @@ ShoppingListPage QPushButton#pushButton_DeleteBought {
 }
 
 ShoppingListPage QPushButton#pushButton_DeleteBought:hover {
-    background-color: #faf5ec;
-    border: 1.5px solid #e3dbcc;
-    color: #3d2817;
+    background-color: #b8794a;
+    border: 1.5px solid #b8794a;
+    color: #ffffff;
 }
 
 ShoppingListPage QPushButton#pushButton_DeleteBought:pressed {
-    background-color: #faf5ec;
-    border: 1.5px solid #e3dbcc;
+    background-color: #b8794a;
+    border: 1.5px solid #b8794a;
+    color: #ffffff;
 }
 
 ShoppingListPage QWidget#widget_InputContainer {
@@ -629,7 +633,7 @@ ShoppingListPage QCheckBox {
 
 ShoppingListPage QFrame#line {
     border: none;
-    border-top: 1.0px solid #e3dbcc;
+    border-top: 1.0px solid #dbd0ba;
     background: transparent;
     max-height: 2px;
 }
