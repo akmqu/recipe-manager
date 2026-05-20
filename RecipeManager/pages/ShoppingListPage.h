@@ -27,7 +27,6 @@ private:
     void loadFromDatabase();
     void addCheckbox(int dbId, const QString &name, bool bought);
     void onItemToggled(QCheckBox *cb, bool checked);
-    void updateBoughtCount();
 };
 
 #endif // SHOPPINGLISTPAGE_H

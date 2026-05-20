@@ -300,3 +300,53 @@ QList<ShoppingItem> DatabaseManager::getAllShoppingItems()
     }
     return list;
 }
+
+QMap<int, int> DatabaseManager::getMealPlan()
+{
+    QMap<int, int> plan;
+    QSqlQuery query;
+    if (!query.exec(QStringLiteral(
+            "SELECT day_of_week, meal_type, recipe_id FROM meal_plan "
+            "WHERE recipe_id IS NOT NULL"))) {
+        m_lastError = query.lastError().text();
+        return plan;
+    }
+
+    while (query.next()) {
+        const int day  = query.value(0).toInt();
+        const int meal = query.value(1).toInt();
+        const int recipeId = query.value(2).toInt();
+        if (recipeId > 0)
+            plan.insert(day * 4 + meal, recipeId);
+    }
+    return plan;
+}
+
+bool DatabaseManager::setMealPlanEntry(int dayOfWeek, int mealType, int recipeId)
+{
+    QSqlQuery query;
+    if (recipeId > 0) {
+        query.prepare(QStringLiteral(
+            "INSERT INTO meal_plan (day_of_week, meal_type, recipe_id) "
+            "VALUES (:day, :meal, :recipe) "
+            "ON CONFLICT (day_of_week, meal_type) "
+            "DO UPDATE SET recipe_id = EXCLUDED.recipe_id"));
+        query.bindValue(QStringLiteral(":day"), dayOfWeek);
+        query.bindValue(QStringLiteral(":meal"), mealType);
+        query.bindValue(QStringLiteral(":recipe"), recipeId);
+    } else {
+        query.prepare(QStringLiteral(
+            "INSERT INTO meal_plan (day_of_week, meal_type, recipe_id) "
+            "VALUES (:day, :meal, NULL) "
+            "ON CONFLICT (day_of_week, meal_type) "
+            "DO UPDATE SET recipe_id = NULL"));
+        query.bindValue(QStringLiteral(":day"), dayOfWeek);
+        query.bindValue(QStringLiteral(":meal"), mealType);
+    }
+
+    if (!query.exec()) {
+        m_lastError = query.lastError().text();
+        return false;
+    }
+    return true;
+}

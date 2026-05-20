@@ -46,9 +46,11 @@ private:
     QString m_currentCategory = QStringLiteral("Wszystkie");
 
     void applyFilters();
+    void applySort(QList<Recipe> &recipes) const;
     void loadCards(const QList<Recipe> &recipes);
     int calculateColumns() const;
     void setupCategoryButtons();
+    void setupSortCombo();
 };
 
 #endif // RECIPEGRIDBROWSER_H

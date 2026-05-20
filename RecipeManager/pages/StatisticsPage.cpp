@@ -6,7 +6,6 @@
 #include <QMap>
 #include <QStringList>
 #include <QtMath>
-#include <limits>
 
 namespace {
 
@@ -58,7 +57,8 @@ void StatisticsPage::loadStatistics()
     int ratingSum = 0;
     int totalTimeSum = 0;
 
-    int fastestTime = std::numeric_limits<int>::max();
+    bool foundFastest = false;
+    int fastestTime = 0;
     int longestTime = 0;
     int latestId = -1;
 
@@ -79,7 +79,8 @@ void StatisticsPage::loadStatistics()
         const int totalTime = recipe.prepTime + recipe.cookTime;
         totalTimeSum += totalTime;
 
-        if (totalTime > 0 && totalTime < fastestTime) {
+        if (totalTime > 0 && (!foundFastest || totalTime < fastestTime)) {
+            foundFastest = true;
             fastestTime = totalTime;
             fastestName = recipe.name;
         }
@@ -128,9 +129,9 @@ void StatisticsPage::loadStatistics()
     );
 
     if (totalCount == 0) {
-        ui->label_FastestRecipe->setText(QStringLiteral("Najszybszy: —"));
-        ui->label_LongestRecipe->setText(QStringLiteral("Najdłuższy: —"));
-        ui->label_LatestRecipe->setText(QStringLiteral("Ostatnio dodano: —"));
+        ui->label_FastestRecipe->setText(QStringLiteral("—"));
+        ui->label_LongestRecipe->setText(QStringLiteral("—"));
+        ui->label_LatestRecipe->setText(QStringLiteral("—"));
 
         ui->label_CategoryStats->setText(QStringLiteral("Brak danych"));
         ui->label_DifficultyStats->setText(QStringLiteral("Brak danych"));
@@ -138,24 +139,24 @@ void StatisticsPage::loadStatistics()
         return;
     }
 
-    if (fastestTime == std::numeric_limits<int>::max()) {
-        ui->label_FastestRecipe->setText(QStringLiteral("Najszybszy: —"));
+    if (!foundFastest) {
+        ui->label_FastestRecipe->setText(QStringLiteral("—"));
     } else {
         ui->label_FastestRecipe->setText(
-            QStringLiteral("Najszybszy: %1 (%2 min)")
+            QStringLiteral(" %1 (%2 min)")
                 .arg(fastestName)
                 .arg(fastestTime)
         );
     }
 
     ui->label_LongestRecipe->setText(
-        QStringLiteral("Najdłuższy: %1 (%2 min)")
+        QStringLiteral("%1 (%2 min)")
             .arg(longestName)
             .arg(longestTime)
     );
 
     ui->label_LatestRecipe->setText(
-        QStringLiteral("Ostatnio dodano: %1").arg(latestName)
+        QStringLiteral("%1").arg(latestName)
     );
 
     ui->label_CategoryStats->setText(

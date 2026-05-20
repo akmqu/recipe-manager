@@ -4,6 +4,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QMap>
 #include <QList>
 #include "models/Recipe.h"
 #include "models/ShoppingItem.h"
@@ -38,6 +39,10 @@ public:
     bool deleteBoughtShoppingItems();
     QList<ShoppingItem> getAllShoppingItems();
 
+    // ── Meal planner ────────────────────────────
+    /** Keys: day_of_week * 4 + meal_type (0–3). Values: recipe_id (> 0). */
+    QMap<int, int> getMealPlan();
+    bool setMealPlanEntry(int dayOfWeek, int mealType, int recipeId);
 
 private:
     DatabaseManager() = default;

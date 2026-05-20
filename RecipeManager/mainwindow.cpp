@@ -74,6 +74,7 @@ void MainWindow::setupNavigation()
             showPage(m_favoritesPage, kMenuFavorites);
             break;
         case kMenuMealPlanner:
+            m_mealPlannerPage->loadMealPlan();
             showPage(m_mealPlannerPage, kMenuMealPlanner);
             break;
         case kMenuShoppingList:

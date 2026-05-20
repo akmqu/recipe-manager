@@ -13,10 +13,7 @@
   <property name="windowTitle">
    <string>Lista Zakupów</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_Main">
-   <property name="spacing">
-    <number>20</number>
-   </property>
+  <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
     <number>28</number>
    </property>
@@ -29,46 +26,10 @@
    <property name="bottomMargin">
     <number>18</number>
    </property>
-   <item>
-    <layout class="QVBoxLayout" name="verticalLayout_Header">
-     <property name="spacing">
-      <number>4</number>
-     </property>
-     <item>
-      <widget class="QLabel" name="label_Title">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>28</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>28</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>16</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Lista zakupów </string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_Count">
-       <property name="text">
-        <string>Produkty do kupienia</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
+   <property name="verticalSpacing">
+    <number>10</number>
+   </property>
+   <item row="2" column="0">
     <widget class="QWidget" name="widget_InputContainer" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout_Input">
       <property name="leftMargin">
@@ -100,7 +61,7 @@
        <widget class="QPushButton" name="pushButton_Add">
         <property name="minimumSize">
          <size>
-          <width>120</width>
+          <width>150</width>
           <height>45</height>
          </size>
         </property>
@@ -112,7 +73,46 @@
      </layout>
     </widget>
    </item>
-   <item>
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout_Header">
+     <property name="spacing">
+      <number>4</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label_PageTitle">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>28</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>28</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Lista zakupów </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_PageTitle2">
+       <property name="text">
+        <string>Składniki, których potrzebujesz do gotowania</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="3" column="0">
     <widget class="QScrollArea" name="scrollArea">
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
@@ -126,7 +126,7 @@
         <x>0</x>
         <y>0</y>
         <width>944</width>
-        <height>546</height>
+        <height>536</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_Scroll">
@@ -145,6 +145,35 @@
        <property name="bottomMargin">
         <number>10</number>
        </property>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="font">
+            <font>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>TRZEBA KUPIĆ:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_ToBuy">
          <property name="spacing">
@@ -183,7 +212,7 @@
              </font>
             </property>
             <property name="text">
-             <string>KUPIONE (0)</string>
+             <string>KUPIONE: </string>
             </property>
            </widget>
           </item>
@@ -207,7 +236,7 @@
            <widget class="QPushButton" name="pushButton_DeleteBought">
             <property name="minimumSize">
              <size>
-              <width>120</width>
+              <width>150</width>
               <height>45</height>
              </size>
             </property>
@@ -218,7 +247,7 @@
              </size>
             </property>
             <property name="text">
-             <string>🗑 Usuń kupione</string>
+             <string>🗑️ Usuń kupione</string>
             </property>
            </widget>
           </item>
@@ -251,6 +280,22 @@
       </layout>
      </widget>
     </widget>
+   </item>
+   <item row="1" column="0">
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>

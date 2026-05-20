@@ -68,7 +68,6 @@ void ShoppingListPage::on_pushButton_DeleteBought_clicked()
         delete li;
     }
 
-    updateBoughtCount();
 }
 
 // Checkbox toggled: move between sections + persist to DB
@@ -90,7 +89,6 @@ void ShoppingListPage::onItemToggled(QCheckBox *cb, bool checked)
         ui->verticalLayout_ToBuy->addWidget(cb);
     }
 
-    updateBoughtCount();
 }
 
 void ShoppingListPage::addCheckbox(int dbId, const QString &name, bool bought)
@@ -118,11 +116,5 @@ void ShoppingListPage::addCheckbox(int dbId, const QString &name, bool bought)
     else
         ui->verticalLayout_ToBuy->addWidget(cb);
 
-    updateBoughtCount();
 }
 
-void ShoppingListPage::updateBoughtCount()
-{
-    const int count = ui->verticalLayout_Bought->count();
-    ui->label_BoughtTitle->setText(QStringLiteral("KUPIONE (%1)").arg(count));
-}

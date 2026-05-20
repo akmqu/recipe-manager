@@ -145,6 +145,12 @@
      </property>
      <item>
       <widget class="QPushButton" name="pushButton_All">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>32</height>
+        </size>
+       </property>
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -273,6 +279,25 @@
        </property>
       </spacer>
      </item>
+     <item>
+      <widget class="QLabel" name="label_Sort">
+       <property name="font">
+        <font>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Sortuj według:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBox_Sort">
+       <property name="currentText">
+        <string notr="true"/>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>
@@ -289,7 +314,7 @@
         <x>0</x>
         <y>0</y>
         <width>1000</width>
-        <height>592</height>
+        <height>583</height>
        </rect>
       </property>
       <property name="sizePolicy">

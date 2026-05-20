@@ -1,8 +1,28 @@
 #include "RecipeGridBrowser.h"
 #include "ui_recipegridbrowser.h"
+#include <QComboBox>
 #include <QResizeEvent>
 #include <QDebug>
+#include <QStyledItemDelegate>
 #include <algorithm>
+
+namespace {
+
+int totalTime(const Recipe &r)
+{
+    return r.prepTime + r.cookTime;
+}
+
+int difficultyRank(const QString &difficulty)
+{
+    if (difficulty == QStringLiteral("Łatwy")) return 0;
+    if (difficulty == QStringLiteral("Średni")) return 1;
+    if (difficulty == QStringLiteral("Trudny")) return 2;
+    return 3;
+}
+
+} // namespace
+
 
 RecipeGridBrowser::RecipeGridBrowser(QWidget *parent)
     : QWidget(parent)
@@ -21,6 +41,7 @@ RecipeGridBrowser::RecipeGridBrowser(QWidget *parent)
     });
 
     setupCategoryButtons();
+    setupSortCombo();
 }
 
 RecipeGridBrowser::~RecipeGridBrowser()
@@ -103,8 +124,72 @@ void RecipeGridBrowser::applyFilters()
             result.end());
     }
 
+    applySort(result);
+
     m_filteredRecipes = result;
     loadCards(m_filteredRecipes);
+}
+
+void RecipeGridBrowser::setupSortCombo()
+{
+    ui->comboBox_Sort->setItemDelegate(new QStyledItemDelegate(this));
+    ui->comboBox_Sort->addItems({
+        QStringLiteral("Najnowsze"),
+        QStringLiteral("Najstarsze"),
+        QStringLiteral("Najszybsze"),
+        QStringLiteral("Najdłuższe"),
+        QStringLiteral("Nazwa A-Z"),
+        QStringLiteral("Nazwa Z-A"),
+        QStringLiteral("Trudność: łatwy -> trudny"),
+        QStringLiteral("Trudność: trudny -> łatwy"),
+        QStringLiteral("Ocena: rosnąco"),
+        QStringLiteral("Ocena: malejąco"),
+    });
+
+    connect(ui->comboBox_Sort, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, [this](int) { applyFilters(); });
+}
+
+void RecipeGridBrowser::applySort(QList<Recipe> &recipes) const
+{
+    const int mode = ui->comboBox_Sort->currentIndex();
+
+    auto byIdDesc = [](const Recipe &a, const Recipe &b) { return a.id > b.id; };
+    auto byIdAsc = [](const Recipe &a, const Recipe &b) { return a.id < b.id; };
+    auto byTimeAsc = [](const Recipe &a, const Recipe &b) {
+        return totalTime(a) < totalTime(b);
+    };
+    auto byTimeDesc = [](const Recipe &a, const Recipe &b) {
+        return totalTime(a) > totalTime(b);
+    };
+    auto byNameAsc = [](const Recipe &a, const Recipe &b) {
+        return QString::localeAwareCompare(a.name, b.name) < 0;
+    };
+    auto byNameDesc = [](const Recipe &a, const Recipe &b) {
+        return QString::localeAwareCompare(a.name, b.name) > 0;
+    };
+    auto byDifficultyAsc = [](const Recipe &a, const Recipe &b) {
+        return difficultyRank(a.difficulty) < difficultyRank(b.difficulty);
+    };
+    auto byDifficultyDesc = [](const Recipe &a, const Recipe &b) {
+        return difficultyRank(a.difficulty) > difficultyRank(b.difficulty);
+    };
+    auto byRatingAsc = [](const Recipe &a, const Recipe &b) { return a.rating < b.rating; };
+    auto byRatingDesc = [](const Recipe &a, const Recipe &b) { return a.rating > b.rating; };
+
+    switch (mode) {
+    case 0: std::sort(recipes.begin(), recipes.end(), byIdDesc); break;
+    case 1: std::sort(recipes.begin(), recipes.end(), byIdAsc); break;
+    case 2: std::sort(recipes.begin(), recipes.end(), byTimeAsc); break;
+    case 3: std::sort(recipes.begin(), recipes.end(), byTimeDesc); break;
+    case 4: std::sort(recipes.begin(), recipes.end(), byNameAsc); break;
+    case 5: std::sort(recipes.begin(), recipes.end(), byNameDesc); break;
+    case 6: std::sort(recipes.begin(), recipes.end(), byDifficultyAsc); break;
+    case 7: std::sort(recipes.begin(), recipes.end(), byDifficultyDesc); break;
+    case 8: std::sort(recipes.begin(), recipes.end(), byRatingAsc); break;
+    case 9: std::sort(recipes.begin(), recipes.end(), byRatingDesc); break;
+    default: break;
+    }
 }
 
 int RecipeGridBrowser::calculateColumns() const

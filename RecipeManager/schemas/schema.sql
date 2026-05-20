@@ -26,3 +26,10 @@ CREATE TABLE IF NOT EXISTS shopping_list (
     name      VARCHAR(255) NOT NULL,
     is_bought BOOLEAN NOT NULL DEFAULT false
 );
+
+CREATE TABLE IF NOT EXISTS meal_plan (
+    day_of_week INTEGER NOT NULL CHECK (day_of_week BETWEEN 0 AND 6),
+    meal_type   INTEGER NOT NULL CHECK (meal_type BETWEEN 0 AND 3),
+    recipe_id   INTEGER REFERENCES recipe(recipe_id) ON DELETE SET NULL,
+    PRIMARY KEY (day_of_week, meal_type)
+);
