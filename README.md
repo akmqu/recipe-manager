@@ -47,16 +47,15 @@ It helps users organize recipes, plan meals, manage shopping items, and view use
 
 | Dashboard | Add Recipe |
 |---|---|
-| ![Dashboard](docs/screenshots/dashboard.png) | ![Add Recipe](docs/screenshots/add-recipe.png) |
+| ![Dashboard](RecipeManager/screenshots/dashboard.png) | ![Add Recipe](RecipeManager/screenshots/add-recipe.png) |
 
 | Meal Planner | Shopping List |
 |---|---|
-| ![Meal Planner](docs/screenshots/meal-planner.png) | ![Shopping List](docs/screenshots/list.png) |
+| ![Meal Planner](RecipeManager/screenshots/meal-planner.png) | ![Shopping List](RecipeManager/screenshots/list.png) |
 
 | Favorites | Statistics |
 |---|---|
-| ![Favorites](docs/screenshots/fav.png) | ![Statistics](docs/screenshots/statistics.png) |
-
+| ![Favorites](RecipeManager/screenshots/fav.png) | ![Statistics](RecipeManager/screenshots/statistics.png) |
 
 ## 🛠 Tech Stack
 
@@ -76,10 +75,10 @@ The application follows a clean, modular architecture, separating the user inter
 
 ```mermaid
 graph TD
-    UI[Frontend / UI Layer<br/>(Qt Widgets & QSS)] 
-    Logic[Core Logic<br/>(C++ / Controllers)]
-    DB_Layer[Database Access Layer<br/>(Qt SQL)]
-    DB[(PostgreSQL<br/>Database)]
+    UI["Frontend / UI Layer<br/>(Qt Widgets & QSS)"] 
+    Logic["Core Logic<br/>(C++ / Controllers)"]
+    DB_Layer["Database Access Layer<br/>(Qt SQL)"]
+    DB[("PostgreSQL<br/>Database")]
 
     UI <-->|Events & Data| Logic
     Logic <-->|SQL Queries| DB_Layer
@@ -88,8 +87,6 @@ graph TD
     classDef default fill:#1e1e1e,stroke:#333,stroke-width:2px,color:#fff;
     classDef database fill:#00599c,stroke:#000,stroke-width:2px,color:#fff;
     class DB database;
-```
-
 ---
 
 ## 🚀 Getting Started
