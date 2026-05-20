@@ -160,7 +160,7 @@
         <widget class="QFrame" name="frame_ImageBlock">
          <property name="maximumSize">
           <size>
-           <width>600</width>
+           <width>650</width>
            <height>16777215</height>
           </size>
          </property>
@@ -199,8 +199,14 @@
              <widget class="QPushButton" name="pushButton_SelectImage">
               <property name="minimumSize">
                <size>
-                <width>0</width>
-                <height>36</height>
+                <width>170</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>140</width>
+                <height>40</height>
                </size>
               </property>
               <property name="text">
@@ -212,8 +218,14 @@
              <widget class="QPushButton" name="pushButton_ClearImage">
               <property name="minimumSize">
                <size>
-                <width>0</width>
-                <height>36</height>
+                <width>170</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>140</width>
+                <height>40</height>
                </size>
               </property>
               <property name="text">

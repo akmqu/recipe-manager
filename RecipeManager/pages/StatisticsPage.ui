@@ -519,7 +519,7 @@
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>240</height>
+              <height>150</height>
              </size>
             </property>
             <property name="text">
@@ -562,7 +562,7 @@
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>240</height>
+              <height>150</height>
              </size>
             </property>
             <property name="text">
@@ -585,6 +585,9 @@
       <spacer name="verticalSpacer">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>

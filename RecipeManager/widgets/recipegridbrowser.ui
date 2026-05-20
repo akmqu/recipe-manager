@@ -132,13 +132,13 @@
       <number>8</number>
      </property>
      <property name="leftMargin">
-      <number>24</number>
+      <number>28</number>
      </property>
      <property name="topMargin">
       <number>10</number>
      </property>
      <property name="rightMargin">
-      <number>24</number>
+      <number>28</number>
      </property>
      <property name="bottomMargin">
       <number>10</number>
