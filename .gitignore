@@ -13,5 +13,5 @@ Makefile
 *.autosave
 .qtc_clangd/
 
-# clangd / IDE tooling (often symlinked into project root — keep local only)
+
 .cache/
