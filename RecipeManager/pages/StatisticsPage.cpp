@@ -2,11 +2,14 @@
 #include "ui_StatisticsPage.h"
 #include "database/DatabaseManager.h"
 
+#include <QBrush>
+#include <QColor>
 #include <QLayout>
 #include <QLayoutItem>
 #include <QList>
 #include <QMap>
 #include <QPainter>
+#include <QPen>
 #include <QtMath>
 #include <QtCharts/QChart>
 #include <QtCharts/QChartView>
@@ -50,16 +53,32 @@ QtCharts::QChartView *StatisticsPage::createPieChart(const QMap<QString, int> &d
         }
     }
 
+    const QList<QColor> colors = {
+        QColor(QStringLiteral("#d08a49")),
+        QColor(QStringLiteral("#c96b5c")),
+        QColor(QStringLiteral("#8fa77b")),
+        QColor(QStringLiteral("#8a5a3c")),
+        QColor(QStringLiteral("#d7c3a7"))
+    };
+
+    int colorIndex = 0;
     for (QtCharts::QPieSlice *slice : series->slices()) {
+        const QColor color = colors.at(colorIndex % colors.size());
+        slice->setBrush(color);
+        slice->setPen(QPen(QColor(QStringLiteral("#ffffff")), 1));
         slice->setLabelVisible(false);
+        colorIndex++;
     }
 
     auto *chart = new QtCharts::QChart();
     chart->addSeries(series);
     chart->legend()->setVisible(true);
     chart->legend()->setAlignment(Qt::AlignBottom);
+    chart->legend()->setLabelColor(QColor(QStringLiteral("#3d2817")));
     chart->setBackgroundVisible(false);
+    chart->setPlotAreaBackgroundVisible(false);
     chart->setMargins(QMargins(0, 0, 0, 0));
+    chart->setTitleBrush(QBrush(QColor(QStringLiteral("#3d2817"))));
 
     auto *chartView = new QtCharts::QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
