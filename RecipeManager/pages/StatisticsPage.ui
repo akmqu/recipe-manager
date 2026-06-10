@@ -94,7 +94,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Podział przepisów według kategorii i trudności</string>
+        <string>Krótkie podsumowanie Twoich przepisów</string>
        </property>
       </widget>
      </item>
