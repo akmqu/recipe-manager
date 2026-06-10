@@ -28,6 +28,10 @@ RecipeGridBrowser::RecipeGridBrowser(QWidget *parent)
     , ui(new Ui::RecipeGridBrowser)
 {
     ui->setupUi(this);
+    ui->label_EmptyState->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    if (auto *layout = qobject_cast<QGridLayout *>(ui->label_EmptyState->parentWidget()->layout()))
+        layout->removeWidget(ui->label_EmptyState);
+    ui->label_EmptyState->hide();
 
     m_gridLayout = qobject_cast<QGridLayout *>(ui->scrollAreaWidgetContents->layout());
     if (m_gridLayout)
@@ -193,6 +197,9 @@ void RecipeGridBrowser::loadCards(const QList<Recipe> &recipes)
     if (!m_gridLayout)
         return;
 
+    m_gridLayout->removeWidget(ui->label_EmptyState);
+    ui->label_EmptyState->hide();
+
     while (QLayoutItem *item = m_gridLayout->takeAt(0)) { //delete from layout  from first
         QWidget *w = item->widget();// get the widget stored inside the layout
         if (w != nullptr) {
@@ -200,6 +207,16 @@ void RecipeGridBrowser::loadCards(const QList<Recipe> &recipes)
         }
         delete item;
     }
+
+    const bool hasRecipes = !recipes.isEmpty();
+    if (!hasRecipes) {
+        m_gridLayout->setAlignment(Qt::AlignCenter);
+        m_gridLayout->addWidget(ui->label_EmptyState, 0, 0, Qt::AlignCenter);
+        ui->label_EmptyState->show();
+        return;
+    }
+
+    m_gridLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
 
     const int columns = calculateColumns();
     int row = 0, col = 0;

@@ -457,6 +457,12 @@ QLabel#label_PageTitle2, QLabel#label_DetailTitle2 {
     background: transparent;
 }
 
+QLabel#label_EmptyState {
+    color: #9b755f;
+    font-size: 15px;
+    background: transparent;
+}
+
 /* ============================================================
    8. SCROLLBARS 
    ============================================================ */

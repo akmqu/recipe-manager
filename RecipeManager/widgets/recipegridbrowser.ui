@@ -386,6 +386,23 @@
        <property name="spacing">
         <number>20</number>
        </property>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_EmptyState">
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>Nie znaleziono przepisów
+Spróbuj wybrać inną kategorię</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>
