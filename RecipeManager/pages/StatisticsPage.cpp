@@ -2,35 +2,27 @@
 #include "ui_StatisticsPage.h"
 #include "database/DatabaseManager.h"
 
+#include <QLayout>
+#include <QLayoutItem>
 #include <QList>
 #include <QMap>
-#include <QStringList>
+#include <QPainter>
 #include <QtMath>
+#include <QtCharts/QChart>
+#include <QtCharts/QChartView>
+#include <QtCharts/QPieSeries>
+#include <QtCharts/QPieSlice>
 
 namespace {
 
-QString formatCountLines(const QMap<QString, int> &counts,
-                         const QStringList &preferredOrder = {})
+void clearLayout(QLayout *layout)
 {
-    if (counts.isEmpty()) {
-        return QStringLiteral("Brak danych");
-    }
-
-    QStringList lines;
-
-    for (const QString &key : preferredOrder) {
-        if (counts.contains(key)) {
-            lines << QStringLiteral("%1: %2").arg(key).arg(counts.value(key));
+    while (QLayoutItem *item = layout->takeAt(0)) {
+        if (item->widget()) {
+            item->widget()->deleteLater();
         }
+        delete item;
     }
-
-    for (auto it = counts.cbegin(); it != counts.cend(); ++it) {
-        if (!preferredOrder.contains(it.key())) {
-            lines << QStringLiteral("%1: %2").arg(it.key()).arg(it.value());
-        }
-    }
-
-    return lines.join(QLatin1Char('\n'));
 }
 
 } // namespace
@@ -46,6 +38,34 @@ StatisticsPage::StatisticsPage(QWidget *parent)
 StatisticsPage::~StatisticsPage()
 {
     delete ui;
+}
+
+QtCharts::QChartView *StatisticsPage::createPieChart(const QMap<QString, int> &data)
+{
+    auto *series = new QtCharts::QPieSeries();
+
+    for (auto it = data.cbegin(); it != data.cend(); ++it) {
+        if (it.value() > 0) {
+            series->append(QStringLiteral("%1 (%2)").arg(it.key()).arg(it.value()), it.value());
+        }
+    }
+
+    for (QtCharts::QPieSlice *slice : series->slices()) {
+        slice->setLabelVisible(false);
+    }
+
+    auto *chart = new QtCharts::QChart();
+    chart->addSeries(series);
+    chart->legend()->setVisible(true);
+    chart->legend()->setAlignment(Qt::AlignBottom);
+    chart->setBackgroundVisible(false);
+    chart->setMargins(QMargins(0, 0, 0, 0));
+
+    auto *chartView = new QtCharts::QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    chartView->setMinimumHeight(220);
+
+    return chartView;
 }
 
 void StatisticsPage::loadStatistics()
@@ -133,8 +153,11 @@ void StatisticsPage::loadStatistics()
         ui->label_LongestRecipe->setText(QStringLiteral("—"));
         ui->label_LatestRecipe->setText(QStringLiteral("—"));
 
-        ui->label_CategoryStats->setText(QStringLiteral("Brak danych"));
-        ui->label_DifficultyStats->setText(QStringLiteral("Brak danych"));
+        clearLayout(ui->categoryChartLayout);
+        clearLayout(ui->difficultyChartLayout);
+
+        ui->categoryChartLayout->addWidget(createPieChart(categoryCounts));
+        ui->difficultyChartLayout->addWidget(createPieChart(difficultyCounts));
 
         return;
     }
@@ -159,17 +182,9 @@ void StatisticsPage::loadStatistics()
         QStringLiteral("%1").arg(latestName)
     );
 
-    ui->label_CategoryStats->setText(
-        formatCountLines(categoryCounts)
-    );
+    clearLayout(ui->categoryChartLayout);
+    clearLayout(ui->difficultyChartLayout);
 
-    const QStringList difficultyOrder = {
-        QStringLiteral("Łatwy"),
-        QStringLiteral("Średni"),
-        QStringLiteral("Trudny")
-    };
-
-    ui->label_DifficultyStats->setText(
-        formatCountLines(difficultyCounts, difficultyOrder)
-    );
+    ui->categoryChartLayout->addWidget(createPieChart(categoryCounts));
+    ui->difficultyChartLayout->addWidget(createPieChart(difficultyCounts));
 }

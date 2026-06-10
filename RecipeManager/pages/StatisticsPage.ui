@@ -94,7 +94,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Krótkie podsumowanie Twoich przepisów</string>
+        <string>Podział przepisów według kategorii i trudności</string>
        </property>
       </widget>
      </item>
@@ -515,23 +515,7 @@
            <number>16</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_CategoryStats">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>150</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Brak danych</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
+           <layout class="QVBoxLayout" name="categoryChartLayout"/>
           </item>
          </layout>
         </widget>
@@ -558,23 +542,7 @@
            <number>16</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_DifficultyStats">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>150</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Brak danych</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
+           <layout class="QVBoxLayout" name="difficultyChartLayout"/>
           </item>
          </layout>
         </widget>
