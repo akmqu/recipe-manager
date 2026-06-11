@@ -43,8 +43,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-
 void MainWindow::setupPages()
 {
     m_allRecipesPage    = new AllRecipesPage(this);
@@ -54,7 +52,6 @@ void MainWindow::setupPages()
     m_statisticsPage    = new StatisticsPage(this);
     m_mealPlannerPage   = new MealPlannerPage(this);
     m_recipeDetailsPage = new RecipeDetailsPage(this);
-    
 
     ui->stackedWidget->addWidget(m_allRecipesPage);    
     ui->stackedWidget->addWidget(m_addRecipePage);  
@@ -135,28 +132,28 @@ void MainWindow::setupConnections()
     });
 
     connect(m_recipeDetailsPage, &RecipeDetailsPage::deleteRequested,
-        this, [this](int recipeId) {
-    auto reply = QMessageBox::question(
-        this,
-        QStringLiteral("Usuń przepis"),
-        QStringLiteral("Czy na pewno chcesz usunąć ten przepis? Tej operacji nie można cofnąć."),
-        QMessageBox::Yes | QMessageBox::No,
-        QMessageBox::No);
+            this, [this](int recipeId) {
+        auto reply = QMessageBox::question(
+            this,
+            QStringLiteral("Usuń przepis"),
+            QStringLiteral("Czy na pewno chcesz usunąć ten przepis? Tej operacji nie można cofnąć."),
+            QMessageBox::Yes | QMessageBox::No,
+            QMessageBox::No);
 
-    if (reply != QMessageBox::Yes)
-        return;
+        if (reply != QMessageBox::Yes)
+            return;
 
-    Recipe r;
-    r.id = recipeId;
-    if (!DatabaseManager::instance().deleteRecipe(r)) {
-        QMessageBox::critical(this, QStringLiteral("Błąd"),
-                              DatabaseManager::instance().lastError());
-        return;
-    }
+        Recipe r;
+        r.id = recipeId;
+        if (!DatabaseManager::instance().deleteRecipe(r)) {
+            QMessageBox::critical(this, QStringLiteral("Błąd"),
+                                  DatabaseManager::instance().lastError());
+            return;
+        }
 
-    refreshRecipeList();
-    showPage(m_allRecipesPage, kMenuAllRecipes);
-});
+        refreshRecipeList();
+        showPage(m_allRecipesPage, kMenuAllRecipes);
+    });
 }
 
 //  Navigation helper

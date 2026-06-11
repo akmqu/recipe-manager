@@ -186,7 +186,7 @@ void StatisticsPage::loadStatistics()
                 .arg(longestTime)
         );
 
-        ui->label_LatestRecipe->setText(latestName);        );
+        ui->label_LatestRecipe->setText(latestName);
     }
 
     clearLayout(ui->categoryChartLayout);

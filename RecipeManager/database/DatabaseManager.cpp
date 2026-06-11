@@ -1,7 +1,8 @@
 #include "DatabaseManager.h"
 #include <QDebug>
-#include <QVariant>
 #include <QFile>
+#include <QSqlError>
+#include <QVariant>
 
 namespace {
 constexpr auto kSelectFields =

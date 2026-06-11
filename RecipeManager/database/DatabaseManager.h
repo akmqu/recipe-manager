@@ -3,7 +3,6 @@
 
 #include <QSqlDatabase>
 #include <QSqlQuery>
-#include <QSqlError>
 #include <QMap>
 #include <QList>
 #include "models/Recipe.h"

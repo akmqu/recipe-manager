@@ -8,7 +8,7 @@
 
 namespace {
 constexpr int kMealsPerDay = 4;
-constexpr int kEmptyRecipeId = 0;
+constexpr int kEmptyRecipeId = 0; 
 } 
 
 MealPlannerPage::MealPlannerPage(QWidget *parent)
@@ -25,9 +25,9 @@ MealPlannerPage::~MealPlannerPage()
     delete ui;
 }
 
-void MealPlannerPage::setupMealCombos()
+void MealPlannerPage::setupMealCombos()//prepare and load saved plan
 {
-    m_mealCombos = {
+    m_mealCombos = {//store in list
         ui->comboBox, ui->comboBox_2, ui->comboBox_3, ui->comboBox_4,
         ui->comboBox_5, ui->comboBox_6, ui->comboBox_7, ui->comboBox_8,
         ui->comboBox_9, ui->comboBox_10, ui->comboBox_11, ui->comboBox_12,
@@ -55,6 +55,7 @@ void MealPlannerPage::loadMealPlan()
     const QList<Recipe> recipes = DatabaseManager::instance().getAllRecipes();
     const QMap<int, int> savedPlan = DatabaseManager::instance().getMealPlan();
 
+    // fill every combobox with recipes
     for (int slot = 0; slot < m_mealCombos.size(); ++slot) {
         QComboBox *combo = m_mealCombos.at(slot);
 
@@ -83,10 +84,11 @@ void MealPlannerPage::saveComboSlot(int slotIndex)
 {
     if (slotIndex < 0 || slotIndex >= m_mealCombos.size())
         return;
-
+    
+    // convert combobox position to day and meal type
     const int day = slotIndex / kMealsPerDay;
     const int meal = slotIndex % kMealsPerDay;
-    const int recipeId = m_mealCombos.at(slotIndex)->currentData().toInt();
+    const int recipeId = m_mealCombos.at(slotIndex)->currentData().toInt(); // get id of selected recipe
 
     if (!DatabaseManager::instance().setMealPlanEntry(day, meal, recipeId)) {
         qWarning() << "setMealPlanEntry failed:"
