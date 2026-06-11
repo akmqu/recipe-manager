@@ -458,9 +458,9 @@ QLabel#label_PageTitle2, QLabel#label_DetailTitle2 {
 }
 
 QLabel#label_EmptyState {
-    color: #9b755f;
-    font-size: 15px;
+    color: #b8794a;
     background: transparent;
+    font-size: 14px;
 }
 
 /* ============================================================
