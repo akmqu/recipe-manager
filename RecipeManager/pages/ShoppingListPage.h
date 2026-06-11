@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QCheckBox>
-#include <QMap>
 
 namespace Ui { class ShoppingListPage; }
 
@@ -21,8 +20,6 @@ private slots:
 
 private:
     Ui::ShoppingListPage *ui;
-
-    QMap<QCheckBox *, int> m_itemIds;
 
     void loadFromDatabase();
     void addCheckbox(int dbId, const QString &name, bool bought);
