@@ -585,7 +585,7 @@ RecipeDetailsPage QTextBrowser#textBrowser_Notes {
 
 AddRecipePage QLabel#label_ImagePreview {
     background-color: #ffffff;
-    border: 1.0px dashed #dbd0ba;
+    border: 1.0px solid #dbd0ba;
     border-radius: 12px;
     color: #9b755f;
 }
