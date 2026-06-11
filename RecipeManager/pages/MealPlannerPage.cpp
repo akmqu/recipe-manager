@@ -4,12 +4,11 @@
 
 #include <QComboBox>
 #include <QDebug>
-#include <QSignalBlocker>
 #include <QStyledItemDelegate>
 
 namespace {
+constexpr int kMealsPerDay = 4;
 constexpr int kEmptyRecipeId = 0;
-constexpr auto kEmptyLabel   = "-";
 } 
 
 MealPlannerPage::MealPlannerPage(QWidget *parent)
@@ -53,47 +52,31 @@ void MealPlannerPage::loadMealPlan()
 {
     m_loading = true;
 
-    fillRecipeLists();
-
-    const QMap<int, int> savedPlan = DatabaseManager::instance().getMealPlan();
-    applySavedPlan(savedPlan);
-
-    m_loading = false;
-}
-
-void MealPlannerPage::fillRecipeLists()
-{
     const QList<Recipe> recipes = DatabaseManager::instance().getAllRecipes();
+    const QMap<int, int> savedPlan = DatabaseManager::instance().getMealPlan();
 
-    for (QComboBox *combo : m_mealCombos) {
-        QSignalBlocker blocker(combo);
+    for (int slot = 0; slot < m_mealCombos.size(); ++slot) {
+        QComboBox *combo = m_mealCombos.at(slot);
+
         combo->clear();
-        combo->addItem(QString::fromUtf8(kEmptyLabel), kEmptyRecipeId);
+        combo->addItem("-", kEmptyRecipeId);
 
         for (const Recipe &recipe : recipes)
             combo->addItem(recipe.name, recipe.id);
 
         combo->setCurrentIndex(0);
-    }
-}
 
-void MealPlannerPage::applySavedPlan(const QMap<int, int> &savedPlan)
-{
-    for (int slot = 0; slot < m_mealCombos.size(); ++slot) {
-        QComboBox *combo = m_mealCombos.at(slot);
-        const int day  = slot / 4;
-        const int meal = slot % 4;
-
-        QSignalBlocker blocker(combo);
-        combo->setCurrentIndex(0);
-
-        const int recipeId = savedPlan.value(slotKey(day, meal), kEmptyRecipeId);
+        const int day = slot / kMealsPerDay;
+        const int meal = slot % kMealsPerDay;
+        const int recipeId = savedPlan.value(day * kMealsPerDay + meal, kEmptyRecipeId);
         if (recipeId > 0) {
-            const int idx = combo->findData(recipeId);
-            if (idx >= 0)
-                combo->setCurrentIndex(idx);
+            const int index = combo->findData(recipeId);
+            if (index >= 0)
+                combo->setCurrentIndex(index);
         }
     }
+
+    m_loading = false;
 }
 
 void MealPlannerPage::saveComboSlot(int slotIndex)
@@ -101,17 +84,12 @@ void MealPlannerPage::saveComboSlot(int slotIndex)
     if (slotIndex < 0 || slotIndex >= m_mealCombos.size())
         return;
 
-    const int day  = slotIndex / 4;
-    const int meal = slotIndex % 4;
+    const int day = slotIndex / kMealsPerDay;
+    const int meal = slotIndex % kMealsPerDay;
     const int recipeId = m_mealCombos.at(slotIndex)->currentData().toInt();
 
     if (!DatabaseManager::instance().setMealPlanEntry(day, meal, recipeId)) {
         qWarning() << "setMealPlanEntry failed:"
                    << DatabaseManager::instance().lastError();
     }
-}
-
-int MealPlannerPage::slotKey(int dayOfWeek, int mealType)
-{
-    return dayOfWeek * 4 + mealType;
 }

@@ -13,4 +13,4 @@ public:
     void refreshRecipes(const QList<Recipe> &recipes);
 };
 
-#endif // FAVORITESPAGE_H
+#endif 

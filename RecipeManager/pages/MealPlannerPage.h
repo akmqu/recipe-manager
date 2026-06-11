@@ -3,7 +3,6 @@
 
 #include <QVector>
 #include <QWidget>
-#include <QMap>
 
 class QComboBox;
 
@@ -27,10 +26,7 @@ private:
     bool m_loading = false;
 
     void setupMealCombos();
-    void fillRecipeLists();
-    void applySavedPlan(const QMap<int, int> &savedPlan);
     void saveComboSlot(int slotIndex);
-    static int slotKey(int dayOfWeek, int mealType);
 };
 
 #endif 

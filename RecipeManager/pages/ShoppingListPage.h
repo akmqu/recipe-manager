@@ -29,4 +29,4 @@ private:
     void onItemToggled(QCheckBox *cb, bool checked);
 };
 
-#endif // SHOPPINGLISTPAGE_H
+#endif 

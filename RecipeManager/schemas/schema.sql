@@ -1,11 +1,8 @@
--- ============================================================
---  Recipe Manager – database schema
---  PostgreSQL 13+
---
+
+-- PostgreSQL
 --  Setup:
 --    1. createdb recipes_db
 --    2. psql -U postgres -d recipes_db -f schema.sql
--- ============================================================
 
 CREATE TABLE IF NOT EXISTS recipe (
     recipe_id   SERIAL PRIMARY KEY,

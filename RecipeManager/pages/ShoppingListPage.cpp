@@ -9,9 +9,6 @@ ShoppingListPage::ShoppingListPage(QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(ui->pushButton_DeleteBought, &QPushButton::clicked,
-            this, &ShoppingListPage::on_pushButton_DeleteBought_clicked);
-
     connect(ui->lineEdit_AddProduct, &QLineEdit::returnPressed,
             this, &ShoppingListPage::on_pushButton_Add_clicked);
 
@@ -70,7 +67,6 @@ void ShoppingListPage::on_pushButton_DeleteBought_clicked()
 
 }
 
-// Checkbox toggled: move between sections + persist to DB
 void ShoppingListPage::onItemToggled(QCheckBox *cb, bool checked)
 {
     const int dbId = m_itemIds.value(cb, -1);

@@ -2,7 +2,6 @@
 #include "ui_StatisticsPage.h"
 #include "database/DatabaseManager.h"
 
-#include <QBrush>
 #include <QColor>
 #include <QLayout>
 #include <QLayoutItem>
@@ -28,7 +27,7 @@ void clearLayout(QLayout *layout)
     }
 }
 
-} // namespace
+} 
 
 StatisticsPage::StatisticsPage(QWidget *parent)
     : QWidget(parent)
@@ -78,7 +77,6 @@ QtCharts::QChartView *StatisticsPage::createPieChart(const QMap<QString, int> &d
     chart->setBackgroundVisible(false);
     chart->setPlotAreaBackgroundVisible(false);
     chart->setMargins(QMargins(0, 0, 0, 0));
-    chart->setTitleBrush(QBrush(QColor(QStringLiteral("#3d2817"))));
 
     auto *chartView = new QtCharts::QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
@@ -171,35 +169,25 @@ void StatisticsPage::loadStatistics()
         ui->label_FastestRecipe->setText(QStringLiteral("—"));
         ui->label_LongestRecipe->setText(QStringLiteral("—"));
         ui->label_LatestRecipe->setText(QStringLiteral("—"));
-
-        clearLayout(ui->categoryChartLayout);
-        clearLayout(ui->difficultyChartLayout);
-
-        ui->categoryChartLayout->addWidget(createPieChart(categoryCounts));
-        ui->difficultyChartLayout->addWidget(createPieChart(difficultyCounts));
-
-        return;
-    }
-
-    if (!foundFastest) {
-        ui->label_FastestRecipe->setText(QStringLiteral("—"));
     } else {
-        ui->label_FastestRecipe->setText(
-            QStringLiteral(" %1 (%2 min)")
-                .arg(fastestName)
-                .arg(fastestTime)
+        if (!foundFastest) {
+            ui->label_FastestRecipe->setText(QStringLiteral("—"));
+        } else {
+            ui->label_FastestRecipe->setText(
+                QStringLiteral(" %1 (%2 min)")
+                    .arg(fastestName)
+                    .arg(fastestTime)
+            );
+        }
+
+        ui->label_LongestRecipe->setText(
+            QStringLiteral("%1 (%2 min)")
+                .arg(longestName)
+                .arg(longestTime)
         );
+
+        ui->label_LatestRecipe->setText(latestName);        );
     }
-
-    ui->label_LongestRecipe->setText(
-        QStringLiteral("%1 (%2 min)")
-            .arg(longestName)
-            .arg(longestTime)
-    );
-
-    ui->label_LatestRecipe->setText(
-        QStringLiteral("%1").arg(latestName)
-    );
 
     clearLayout(ui->categoryChartLayout);
     clearLayout(ui->difficultyChartLayout);

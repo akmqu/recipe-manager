@@ -9,4 +9,4 @@ struct ShoppingItem {
     bool    isBought = false;
 };
 
-#endif // SHOPPINGITEM_H
+#endif 

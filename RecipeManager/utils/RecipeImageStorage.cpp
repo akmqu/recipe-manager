@@ -161,4 +161,4 @@ void updatePreviewLabel(QLabel *label, const QString &imagePath, int cornerRadiu
     label->setPixmap(coverRoundPixmap(pm, box, cornerRadius));
 }
 
-} // namespace RecipeImageStorage
+} 

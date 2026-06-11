@@ -30,4 +30,4 @@ private:
     Ui::StatisticsPage *ui;
 };
 
-#endif // STATISTICSPAGE_H
+#endif
