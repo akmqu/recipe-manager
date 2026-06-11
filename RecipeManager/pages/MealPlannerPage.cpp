@@ -10,7 +10,7 @@
 namespace {
 constexpr int kEmptyRecipeId = 0;
 constexpr auto kEmptyLabel   = "-";
-} // namespace
+} 
 
 MealPlannerPage::MealPlannerPage(QWidget *parent)
     : QWidget(parent)

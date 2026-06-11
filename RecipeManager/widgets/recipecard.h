@@ -31,4 +31,4 @@ private:
     void updateFavoriteButton();
 };
 
-#endif // RECIPECARD_H
+#endif 

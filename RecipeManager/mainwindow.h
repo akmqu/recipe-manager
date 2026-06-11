@@ -48,4 +48,4 @@ private:
     void showPage(QWidget* page, int menuRow = -1);
 };
 
-#endif // MAINWINDOW_H
+#endif 

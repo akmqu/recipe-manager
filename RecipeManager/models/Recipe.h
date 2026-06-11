@@ -17,9 +17,4 @@ struct Recipe {
     QString imagePath = "";
 };
 
-
-
-
-
-
 #endif 

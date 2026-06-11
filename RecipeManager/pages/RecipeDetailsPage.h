@@ -35,4 +35,4 @@ private:
     static constexpr int kHeroCornerRadius = 16;
 };
 
-#endif // RECIPEDETAILSPAGE_H
+#endif 

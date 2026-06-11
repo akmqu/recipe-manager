@@ -8,19 +8,30 @@
 
 namespace {
 
-int nonNegativeIntOrZero(const QString &text)
+bool parseNonNegativeIntField(QWidget *parent, const QString &text, const QString &fieldName, int &value)
 {
+    const QString trimmed = text.trimmed();
+    if (trimmed.isEmpty()) {
+        value = 0;
+        return true;
+    }
+
     bool ok = false;
-    const int value = text.trimmed().toInt(&ok);
-    return (ok && value >= 0) ? value : 0;
+    const int parsedValue = trimmed.toInt(&ok);
+    if (ok && parsedValue >= 0) {
+        value = parsedValue;
+        return true;
+    }
+
+    QMessageBox::warning(
+        parent,
+        QStringLiteral("Błędne dane"),
+        QStringLiteral("Pole \"%1\" musi być liczbą całkowitą większą lub równą 0.")
+            .arg(fieldName));
+    return false;
 }
 
-int validRatingOrZero(int rating)
-{
-    return (rating >= 0 && rating <= 5) ? rating : 0;
-}
-
-} // namespace
+} 
 
 AddRecipePage::AddRecipePage(QWidget *parent)
     : QWidget(parent)
@@ -80,9 +91,8 @@ void AddRecipePage::loadForEdit(const Recipe &recipe)
     QString notes = recipe.notes;
     ui->plainTextEdit_Ingredients->setPlainText(ingredients.replace("\\n", "\n"));
     ui->plainTextEdit_Notes->setPlainText(notes.replace("\\n", "\n"));
-    const int rating = validRatingOrZero(recipe.rating);
-    if (rating < ui->comboBox_Rating->count())
-        ui->comboBox_Rating->setCurrentIndex(rating);
+    if (recipe.rating >= 0 && recipe.rating < ui->comboBox_Rating->count())
+        ui->comboBox_Rating->setCurrentIndex(recipe.rating);
     else
         ui->comboBox_Rating->setCurrentIndex(0);
 
@@ -126,7 +136,20 @@ void AddRecipePage::on_pushButton_ClearImage_clicked()
 
 void AddRecipePage::on_pushButton_clicked()
 {
-    const Recipe r = collectFormData();
+    int prepTime = 0;
+    int cookTime = 0;
+
+    if (!parseNonNegativeIntField(this, ui->lineEdit_PrepTime->text(),
+                                  QStringLiteral("Czas przygotowania"), prepTime)) {
+        return;
+    }
+
+    if (!parseNonNegativeIntField(this, ui->lineEdit_CookTime->text(),
+                                  QStringLiteral("Czas gotowania"), cookTime)) {
+        return;
+    }
+
+    const Recipe r = collectFormData(prepTime, cookTime);
     if (!validate(r))
         return;
 
@@ -140,13 +163,13 @@ void AddRecipePage::on_pushButton_Cancel_clicked()
     emit cancelled(returnToDetailsId);
 }
 
-Recipe AddRecipePage::collectFormData() const
+Recipe AddRecipePage::collectFormData(int prepTime, int cookTime) const
 {
     Recipe r;
     r.id = m_editId;
     r.name = ui->lineEdit_Name->text().trimmed();
-    r.prepTime = nonNegativeIntOrZero(ui->lineEdit_PrepTime->text());
-    r.cookTime = nonNegativeIntOrZero(ui->lineEdit_CookTime->text());
+    r.prepTime = prepTime;
+    r.cookTime = cookTime;
     r.ingredients = ui->plainTextEdit_Ingredients->toPlainText().trimmed();
     r.notes = ui->plainTextEdit_Notes->toPlainText().trimmed();
     r.category = ui->comboBox_Category->currentText();

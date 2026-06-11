@@ -33,4 +33,4 @@ private:
     static int slotKey(int dayOfWeek, int mealType);
 };
 
-#endif // MEALPLANNERPAGE_H
+#endif 

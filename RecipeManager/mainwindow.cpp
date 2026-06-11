@@ -15,7 +15,7 @@ constexpr int kMenuShoppingList = 5;
 constexpr int kMenuAddRecipe = 7;
 constexpr int kMenuStatistics = 8;
 constexpr int kNoMenuSync = -1;
-} // namespace
+} 
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -159,9 +159,7 @@ void MainWindow::setupConnections()
 });
 }
 
-// ─────────────────────────────────────────
 //  Navigation helper
-// ─────────────────────────────────────────
 
 void MainWindow::showPage(QWidget* page, int menuRow)
 {
@@ -173,9 +171,7 @@ void MainWindow::showPage(QWidget* page, int menuRow)
     }
 }
 
-// ─────────────────────────────────────────
 //  Private slots
-// ─────────────────────────────────────────
 
 void MainWindow::refreshRecipeList()
 {

@@ -41,7 +41,7 @@ private:
 
     void refreshImagePreview();
 
-    Recipe collectFormData() const;
+    Recipe collectFormData(int prepTime, int cookTime) const;
     bool validate(const Recipe &recipe) const;
 };
 

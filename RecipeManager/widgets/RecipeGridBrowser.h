@@ -53,4 +53,4 @@ private:
     void setupSortCombo();
 };
 
-#endif // RECIPEGRIDBROWSER_H
+#endif 
