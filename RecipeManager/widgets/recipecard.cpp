@@ -43,11 +43,16 @@ RecipeCard::RecipeCard(const Recipe& recipe, QWidget *parent)
 
     ui->label_rating->setText(starsText);
 
-   
+    auto setImageState = [this](bool hasImage) {
+        ui->label_image->setProperty("hasImage", hasImage);
+        ui->label_image->style()->unpolish(ui->label_image);
+        ui->label_image->style()->polish(ui->label_image);
+    };
 
     if (!recipe.imagePath.isEmpty() && QFile::exists(recipe.imagePath)) {
         QPixmap pm(recipe.imagePath);
         if (!pm.isNull()) {
+            setImageState(true);
             QSize box = ui->label_image->size();
             if (box.width() < 20 || box.height() < 20)
                 box = QSize(300, 200);
@@ -55,9 +60,11 @@ RecipeCard::RecipeCard(const Recipe& recipe, QWidget *parent)
             ui->label_image->setPixmap(
                 RecipeImageStorage::coverTopRoundPixmap(pm, box, kCardImageRadius));
         } else {
+            setImageState(false);
             ui->label_image->setText(QStringLiteral("Brak zdjęcia"));
         }
     } else {
+        setImageState(false);
         ui->label_image->setText(QStringLiteral("Brak zdjęcia"));
     }
     

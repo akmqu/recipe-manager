@@ -293,14 +293,25 @@ RecipeCard QWidget, RecipeCard QLabel, RecipeCard QFrame {
 }
 
 RecipeCard #label_image {
-    background-color: #ffffff; 
-    color: #3d2817; 
-    font-size: 11px;
+    background-color: #ffffff;
+    color: #9b755f;
+    font-size: 12px;
     border-top-left-radius: 13px;
     border-top-right-radius: 13px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
     qproperty-alignment: AlignCenter;
+}
+
+RecipeCard #label_image[hasImage="false"] {
+    background-color: #faf5ec;
+    color: #b8794a;
+    border: 1.3px solid #dbd0ba;
+}
+
+RecipeCard #label_image[hasImage="true"] {
+    background-color: transparent;
+    border: none;
 }
 
 RecipeCard #label_title {
